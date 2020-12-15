@@ -4,8 +4,8 @@ class CreateTournaments < ActiveRecord::Migration[6.0]
       t.string :name
       t.date :date
       t.integer :entry_fee
-      t.string :rules
       t.integer :user_id
+      t.boolean :team_tournament
 
       t.timestamps
     end
