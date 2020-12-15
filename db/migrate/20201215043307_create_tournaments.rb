@@ -5,8 +5,7 @@ class CreateTournaments < ActiveRecord::Migration[6.0]
       t.date :date
       t.integer :entry_fee
       t.string :rules
-      t.belongs_to :user, null: false, foreign_key: true
-
+      t.integer :user_id
 
       t.timestamps
     end
