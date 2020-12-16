@@ -1,13 +1,20 @@
-<%= @user.name %>
+<h1><%= @user.name %></h1>
 
 <h4>Tournaments</h4>
 <% @tournaments.each do |t| %>
-<%= link_to t.name, tournaments_path(t) %>
+<%= link_to t.name, tournament_path(t.id) %>
 <br>
 <% end %>
+<br>
+<%= link_to "All Tournaments", tournaments_path %>
+<%= link_to "Add New Tournament", new_tournament_path %>
 
+<br>
+<br>
 <h4>Players</h4>
 <% @players.each do |p| %>
 <%= p.name %>
 <br>
 <% end %>
+<%= link_to "All Players", players_path %>
+<%= link_to "Add Player", new_player_path %>

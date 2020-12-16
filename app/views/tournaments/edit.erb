@@ -1,0 +1,19 @@
+<%= form_for @tournament do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :date %>
+<%= f.date_field :date %>
+<%= f.label :entry_fee %>
+<%= f.number_field :entry_fee %>
+<%= f.label :user_id %>
+<%= f.number_field :user_id %>
+<%= f.label :team_tournament %>
+<%= f.check_box :team_tournament%>
+<br>
+<br>
+<%= f.label :players %>
+<%= f.collection_check_boxes :players, @players, :id, :name %>
+<br>
+<br>
+<%= f.submit %>
+<% end %>

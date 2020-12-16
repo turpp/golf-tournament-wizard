@@ -1,0 +1,21 @@
+<h1><%= @tournament.name %></h1>
+<br>
+<h4>Entry Fee: $<%= @tournament.entry_fee %></h4>
+
+<h4>Players</h4>
+<% @players.each do |p| %>
+<%= p.name %>
+<br>
+<% end %>
+
+<h4>Teams</h4>
+<% @tournament.teams.each do |team|%>
+-----------------------------------
+<br>
+<% team.players.each do |player| %>
+<%= player.name %>
+<br>
+<% end %>
+<% end %>
+
+<%= link_to "Add Players to Tournament or Edit", edit_tournament_path(@tournament) %>
