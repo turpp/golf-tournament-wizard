@@ -1,0 +1,7 @@
+<%= form_for @user do |f| %>
+<%= f.fields_for :players do |p| %>
+<%= p.label :name %>
+<%= p.text_field :name %>
+<% end %>
+<%= f.submit %>
+<% end %>

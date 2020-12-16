@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
     
     def new
+        @user=User.new
+        3.times{@user.players.build}
     end
 
     def create
+        byebug
     end
 
     def edit

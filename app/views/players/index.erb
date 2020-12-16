@@ -1,0 +1,5 @@
+<h1>All Players</h1>
+<% @players.each do |p| %>
+<%= link_to p.name, player_path(p) %>
+<%= p.handicap %>
+<% end %>
