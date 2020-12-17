@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tournaments
   resources :users
   resources :players
+  resources :teams
 
   root "sessions#home"
 

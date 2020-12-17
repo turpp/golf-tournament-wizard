@@ -20,6 +20,7 @@ class TournamentsController < ApplicationController
         @players=Player.all
         @teams=@tournament.teams
         @n=0
+        @g=0
     end
 
     def update
