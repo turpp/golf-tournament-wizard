@@ -1,50 +1,44 @@
-<%= form_for @tournament do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :date %>
-<%= f.date_field :date %>
-<%= f.label :entry_fee %>
-<%= f.number_field :entry_fee %>
-<%= f.label :user_id %>
-<%= f.number_field :user_id %>
-<%= f.label :team_tournament %>
-<%= f.check_box :team_tournament%>
-<br>
-<br>
 
 
-
-<% @players.each do |p|%>
-<% if p.tournaments.include?(@tournament) %>
-<%= f.label p.name %>
-<%= f.check_box 'players[]', {:checked=>true} %>
-<% else%>
-<%= f.label p.name %>
-<%= f.check_box 'players' %>
-
-<% end %>
-<% end %>
-<%= f.submit %>
-<% end %>
-
-
-<%= form_tag edit_tournament_path, method: :post do %>
+<%= form_tag tournament_path, method: :patch do %>
 <%= label_tag :name %>
-<%= text_field_tag :name, @tournament.name  %>
+<%= text_field_tag "tournament[name]", @tournament.name  %>
 <%= label_tag :date %>
-<%= date_field_tag :date, @tournament.date %>
+<%= date_field_tag "tournament[date]", @tournament.date %>
 <%= label_tag :entry_fee %>
-<%= number_field_tag :entry_fee, @tournament.entry_fee %>
+<%= number_field_tag "tournament[entry_fee]", @tournament.entry_fee %>
 <%= label_tag :user_id %>
-<%= number_field_tag :user_id, @tournament.user_id %>
+<%= number_field_tag "tournament[user_id]", @tournament.user_id %>
 <%= label_tag :team_tournament %>
-<%= check_box_tag :team_tournament, true, (true if @tournament.team_tournament==true) %>
+<%= check_box_tag "tournament[team_tournament]", true, (true if @tournament.team_tournament==true) %>
 <br>
 <%= label_tag :Players %>
 <% @players.each do |p|%>
 <%= label_tag p.name %>
-<%= check_box_tag 'player_ids[]', p.id, (true if p.tournaments.include?(@tournament)) %>
+<%# <%= check_box_tag 'tournament[player_ids][]', p.id, (true if p.tournaments.include?(@tournament)) %>
 <% end %>
+
+<br>
+<br>
+
+<%= label_tag :teams %>
+<br>
+<br>
+<% @teams.each do |t|%>
+<%= "Team#{@n+=1}" %>
+<br>
+
+---------------------
+<br>
+<% t.players.each do |p|%>
+<%= label_tag p.name %>
+<%= check_box_tag 'tournament[player_ids][]', p.id, (true if p.tournaments.include?(@tournament)) %>
+ <% end %>
+ <br>
+ <br>
+ <% end %>
+
+<%= submit_tag "Submit" %>
 <% end %>
 <br>
 <br>

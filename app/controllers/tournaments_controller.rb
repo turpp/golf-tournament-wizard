@@ -18,10 +18,19 @@ class TournamentsController < ApplicationController
     def edit
         @tournament=Tournament.find_by(id: params[:id])
         @players=Player.all
+        @teams=@tournament.teams
+        @n=0
     end
 
     def update
         byebug
+        @tournament=Tournament.find_by(id: params[:id])
+        @tournament.update(tournament_params)
+        params[:tournament][:player_ids].each do |id|
+            player=Player.find_by(id: id )
+            @tournament.players << player
+        end
+        redirect_to tournament_path(@tournament)
     end
 
     def show
