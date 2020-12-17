@@ -4,25 +4,22 @@ class PlayersController < ApplicationController
         
         @players=Player.all 
     end
+def number
+end
 
+def times
+    @n=params[:number].to_i
+    redirect_to "/players/new/#{@n}"
+end
     def new
-        # @player=Player.new
-        @user=User.new
-        3.times{@user.players.build}
-        @player=Player.new
-        @empty_players=[]
-         @n=0
-        3.times{@empty_players << Player.new}
-    #    @player=3.times {Player.new}
+         @n=params[:number].to_i
     end
 
     def create
-        byebug
-        # @n=params[:hidden]
-        # c=1
-        # @n.times{Player.new(parmas.require(:player).permit(:player#{}))}
-        # player=Player.create(player_params)
-        # redirect_to player_path(player)
+        params[:player].each do |player|
+            Player.create(player_params(player))
+        end
+        redirect_to players_path
     end
     
     def show
@@ -31,8 +28,9 @@ class PlayersController < ApplicationController
 
 
     private
-    def player_params
-        params.require(:player).permit(:name, :handicap, :paid, :mulligan, :user_id, new_player1: [:name, :handicap])
+    def player_params(my_params)
+        # params.require(:player).permit(:name, :handicap, :paid, :mulligan, :user_id)
+        my_params.permit(:name, :user_id, :handicap)
     end
 
 end

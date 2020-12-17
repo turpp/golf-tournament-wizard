@@ -21,6 +21,7 @@ class TournamentsController < ApplicationController
     end
 
     def update
+        byebug
     end
 
     def show

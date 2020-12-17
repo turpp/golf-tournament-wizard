@@ -11,9 +11,41 @@
 <%= f.check_box :team_tournament%>
 <br>
 <br>
-<%= f.label :players %>
-<%= f.collection_check_boxes :players, @players, :id, :name %>
-<br>
-<br>
+
+
+
+<% @players.each do |p|%>
+<% if p.tournaments.include?(@tournament) %>
+<%= f.label p.name %>
+<%= f.check_box 'players[]', {:checked=>true} %>
+<% else%>
+<%= f.label p.name %>
+<%= f.check_box 'players' %>
+
+<% end %>
+<% end %>
 <%= f.submit %>
 <% end %>
+
+
+<%= form_tag edit_tournament_path, method: :post do %>
+<%= label_tag :name %>
+<%= text_field_tag :name, @tournament.name  %>
+<%= label_tag :date %>
+<%= date_field_tag :date, @tournament.date %>
+<%= label_tag :entry_fee %>
+<%= number_field_tag :entry_fee, @tournament.entry_fee %>
+<%= label_tag :user_id %>
+<%= number_field_tag :user_id, @tournament.user_id %>
+<%= label_tag :team_tournament %>
+<%= check_box_tag :team_tournament, true, (true if @tournament.team_tournament==true) %>
+<br>
+<%= label_tag :Players %>
+<% @players.each do |p|%>
+<%= label_tag p.name %>
+<%= check_box_tag 'player_ids[]', p.id, (true if p.tournaments.include?(@tournament)) %>
+<% end %>
+<% end %>
+<br>
+<br>
+<br>

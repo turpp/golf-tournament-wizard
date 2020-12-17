@@ -1,0 +1,6 @@
+<h1>How many players would you like to add?</h1>
+<%= form_tag '/players/number', method: :post do %>
+<%= label_tag "Number of Golfers:" %>
+<%= number_field_tag :number %>
+<%= submit_tag "Submit" %>
+<% end %>

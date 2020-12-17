@@ -2,4 +2,8 @@
 <% @players.each do |p| %>
 <%= link_to p.name, player_path(p) %>
 <%= p.handicap %>
+<br>
 <% end %>
+<br>
+<br>
+<%= link_to "Add Golfers", players_number_path %>
