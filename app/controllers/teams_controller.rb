@@ -27,7 +27,6 @@ class TeamsController < ApplicationController
         @team.players << player
         end
     end
-    byebug
     redirect_to tournament_path(@team.tournament_id)
 
         
@@ -59,7 +58,19 @@ class TeamsController < ApplicationController
         n=params[:number].to_i
         redirect_to "/teams/new/#{n}/#{tournament_id}"
     end
+    def destroy
 
+
+        team=Team.find_by(id: params[:id])
+        i=team.tournament_id
+        team.players_teams.each do |pt|
+            pt.delete
+        end
+        team.delete
+        redirect_to tournament_path(i)
+        
+    end
+    
     private
 
     def team_params(my_params)
