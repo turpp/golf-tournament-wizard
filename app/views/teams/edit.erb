@@ -7,7 +7,10 @@
 <%= f.number_field :tournament_id %>
 <br>
  
-
+<%= f.fields_for :players_teams do |pt| %>
+<%= pt.label "Team Member:" %>
+<%= pt.collection_select :player_id, Player.all, :id, :name %>
+<% end %>
 
 
 

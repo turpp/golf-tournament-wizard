@@ -33,7 +33,13 @@ class TeamsController < ApplicationController
     end
 
     def update
-        byebug
+        team=Team.find_by(id: params[:id])
+        PlayersTeam.where(team_id: team.id).each do |pt|
+            pt.delete
+        end
+        team.update(team_params(params[:team]))
+        redirect_to tournament_path(team.tournament_id)
+
     end
 
     def tournament
@@ -56,7 +62,7 @@ class TeamsController < ApplicationController
     private
 
     def team_params(my_params)
-        my_params.permit(:final_score, :tournament_id, :divison)
+        my_params.permit(:final_score, :tournament_id, :divison, players_teams_attributes: [:player_id])
     end
 
 
