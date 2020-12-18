@@ -37,6 +37,7 @@ class TournamentsController < ApplicationController
     def show
         @tournament=Tournament.find_by(id: params[:id])
         @players=@tournament.players
+        @n=0
     end
 
     private

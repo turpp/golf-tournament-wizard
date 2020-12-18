@@ -9,7 +9,7 @@ ozark=User.create(name: 'Ozark Recreation Association', address: "6624 Lock and 
 player_one=Player.create(name: "Tripp", handicap: 7, user_id: 1)
 player_two=Player.create(name: "Eric", handicap: 10, user_id: 1)
 
-tournament_one=Tournament.create(name:"Scramble", entry_fee: 20, user_id: 1, team_tournament: true)
+tournament_one=Tournament.create(name:"Scramble", entry_fee: 20, user_id: 1, players_on_team: 2)
 team=Team.create(divison: "White and Blue", tournament_id: 1)
 players_teams_two=PlayersTeam.create(player_id: 1, team_id: 1)
 players_teams_three=PlayersTeam.create(player_id: 2, team_id: 1)
@@ -17,7 +17,7 @@ players_teams_three=PlayersTeam.create(player_id: 2, team_id: 1)
 
 
 
-tournament_two=Tournament.create(name:"Solo", entry_fee: 35, user_id: 1, team_tournament: false )
+tournament_two=Tournament.create(name:"Solo", entry_fee: 35, user_id: 1, players_on_team: 1 )
 team=Team.create(divison: "White and Blue", tournament_id: 2)
 players_teams=PlayersTeam.create(player_id: 1, team_id: 2)
 team_two=Team.create(divison: "White and Blue", tournament_id: 2)

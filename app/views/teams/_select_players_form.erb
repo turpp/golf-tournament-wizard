@@ -1,0 +1,5 @@
+<%@players_on_team.times do %>
+Golfer:
+<%= collection_select "team[][player_ids][][id]", :id, Player.all, :id, :name, prompt: true %>
+<br>
+<% end %>

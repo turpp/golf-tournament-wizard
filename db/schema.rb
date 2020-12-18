@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 6) do
     t.date "date"
     t.integer "entry_fee"
     t.integer "user_id"
-    t.boolean "team_tournament"
+    t.integer "players_on_team"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
