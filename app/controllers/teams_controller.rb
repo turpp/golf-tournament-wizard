@@ -21,13 +21,14 @@ class TeamsController < ApplicationController
 
     def create
         params[:team].each do |t|
-        team=Team.create(team_params(t))
+        @team=Team.create(team_params(t))
         t[:player_ids].each do |p|
         player=Player.find_by(id: p[:id][:id].to_i)
-        team.players << player
+        @team.players << player
         end
     end
-    redirect_to tournament_path(team.tournament_id)
+    byebug
+    redirect_to tournament_path(@team.tournament_id)
 
         
     end
