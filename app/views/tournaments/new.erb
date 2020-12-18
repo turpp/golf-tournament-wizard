@@ -7,12 +7,10 @@
 <%= f.number_field :entry_fee %>
 <%= f.label :user_id %>
 <%= f.number_field :user_id %>
-<%= f.label :team_tournament %>
-<%= f.check_box :team_tournament%>
+<%= f.label :players_on_team %>
+<%= f.number_field :players_on_team%>
 <br>
 <br>
-<%= f.label :players %>
-<%= f.collection_check_boxes :players, @players, :id, :name %>
 
 <%= f.submit %>
 <% end %>

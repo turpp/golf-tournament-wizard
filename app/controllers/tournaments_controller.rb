@@ -10,9 +10,9 @@ class TournamentsController < ApplicationController
     end
 
     def create
-        byebug
-        # t=Tournament.create(tournament_params)
-        # redirect_to tournament_path(t)
+
+        t=Tournament.create(tournament_params)
+        redirect_to tournament_path(t)
     end
 
     def edit
@@ -25,13 +25,13 @@ class TournamentsController < ApplicationController
 
     def update
         byebug
-        # @tournament=Tournament.find_by(id: params[:id])
-        # @tournament.update(tournament_params)
+        @tournament=Tournament.find_by(id: params[:id])
+        @tournament.update(tournament_params)
         # params[:tournament][:player_ids].each do |id|
         #     player=Player.find_by(id: id )
         #     @tournament.players << player
         # end
-        # redirect_to tournament_path(@tournament)
+        redirect_to tournament_path(@tournament)
     end
 
     def show
@@ -42,7 +42,7 @@ class TournamentsController < ApplicationController
 
     private
     def tournament_params
-        params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :team_tournament, :players)
+        params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team)
     end
 end
 
