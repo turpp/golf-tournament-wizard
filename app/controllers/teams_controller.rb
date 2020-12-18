@@ -1,6 +1,4 @@
 class TeamsController < ApplicationController
-    def index
-    end
     
     def number
         byebug
@@ -22,15 +20,14 @@ class TeamsController < ApplicationController
     end
 
     def create
-        byebug
         params[:team].each do |t|
         team=Team.create(team_params(t))
         t[:player_ids].each do |p|
-            byebug
         player=Player.find_by(id: p[:id][:id].to_i)
         team.players << player
         end
     end
+    redirect_to tournament_path(team.tournament_id)
 
         
     end
@@ -51,7 +48,6 @@ class TeamsController < ApplicationController
     end
 
     def times
-        byebug
         tournament_id=params[:tournament_id]
         n=params[:number].to_i
         redirect_to "/teams/new/#{n}/#{tournament_id}"

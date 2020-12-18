@@ -6,10 +6,6 @@
 <%= f.label :tournament_id %>
 <%= f.number_field :tournament_id %>
 <br>
-<% @team.players.each do |p| %>
-<%= label_tag "Current player: #{p.name}" %>
-<%= collection_select "player_id", p.id, Player.all, :id, :name %>
-<% end %>
  
 
 

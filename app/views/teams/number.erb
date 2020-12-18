@@ -2,7 +2,6 @@
 <%= form_tag "/teams/number", method: :post do %>
 <%= label_tag "Number of Teams:" %>
 <%= number_field_tag :number %>
-<% byebug %>
 <%= hidden_field_tag "tournament_id", params[:tournament_id] %>
 <%= submit_tag "Submit" %>
 <% end %>

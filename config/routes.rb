@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get "/players/number", to: 'players#number'
   get '/teams/number/:tournament_id', to: 'teams#number'
   post '/teams/number', to: 'teams#times'
-  get '/teams/tournament/:tournament_id' to 'teams#index'
 
   resources :tournaments
   resources :users
