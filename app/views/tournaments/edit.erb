@@ -14,17 +14,21 @@
 <%= f.label :team_tournament %>
 <%= f.check_box :team_tournament %>
 <br>
-<%= f.label :teams %>
-<%= f.fields_for :teams do |t| %>
 <br>
-<%= f.label "Team #{@n+=1}" %>
-<% @g=0 %>
+<br>
+<br>
 
-<%= t.fields_for :players do |p| %>
-<%= p.label "Golfer #{@g+=1}" %>
-<%= p.collection_select :id, @players, :id, :name  %>
+
+
+
+
+<%= f.label :teams %>
+<% @tournament.teams.each do |t| %>
+<%= "Team #{@n+=1}" %>
+<% t.players.each do |p|%>
+<%= "Current Player: #{p.name}" %>
+<%=  collection_select "team[#{t.id}][player_ids]", p.id, Player.all, :id, :name, multiple: true, prompt: true, selected: p.id%>
 <% end %>
-<br>
 <% end %>
 <br>
 <%= f.submit %>

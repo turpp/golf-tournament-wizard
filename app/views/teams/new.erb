@@ -1,0 +1,13 @@
+<%= form_for @team do |f| %>
+<%= f.label :final_score %>
+<%= f.number_field :final_score %>
+<%= f.label :divison %>
+<%= f.text_field :divison %>
+<%= f.label :tournament_id %>
+<%= f.number_field :tournament_id %>
+<%= f.fields_for :players do |p| %>
+<%= p.label :name %>
+<%= p.collection_select :id, Player.all, :id, :name %>
+<% end %>
+ <%= f.submit %>
+ <% end %>

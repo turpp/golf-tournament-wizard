@@ -1,6 +1,9 @@
+<h1>All Tournaments</h1>
+<h6>click link to see more info</h6>
 <% @tournaments.each do |t| %>
 <%= link_to t.name, tournament_path(t) %>
-<%= t.date %>
+-
+<%= t.date.strftime("%A, %b %d") if t.date %>
 <br>
 <% end %>
 

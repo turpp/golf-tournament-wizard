@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   resources :users
   resources :players
   resources :teams
+  resources :playersteams
 
   root "sessions#home"
 
   get "/players/new/:number", to: "players#new"
   get "/players/number", to: 'players#number'
   post "/players/number", to: 'players#times'
+  get '/teams/tournament/:id', to: 'teams#tournament'
 end

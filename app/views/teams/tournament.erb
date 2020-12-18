@@ -1,0 +1,13 @@
+<%= @tournament.name %>
+Teams:
+<% @teams.each do |t| %>
+<br>
+<%= "Team #{@n+=1}" %>
+<br>
+<% t.players.each do |p| %>
+<%= "Player #{@i+=1}" %>
+<%=  p.name %>
+<br>
+<% end %>
+<% @i=0%>
+<% end %>

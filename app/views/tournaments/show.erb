@@ -9,6 +9,7 @@
 <% end %>
 
 <h4>Teams</h4>
+<h6>Click on Team to edit</h6>
 <% @tournament.teams.each do |team|%>
 -----------------------------------
 <br>
@@ -22,5 +23,6 @@
 
 <%= link_to "Edit Tournament Details", edit_tournament_path(@tournament) %>
 <br>
+<%= link_to "Edit Team", '/teams/tournament' %>
 <br>
 <%= link_to "Add Golfers to Clubhouse", players_number_path %>
