@@ -2,31 +2,6 @@
 <h4>Entry Fee:<%= @tournament.entry_fee %>
 <h4>Number of Golfers on a Team:<%= @tournament.players_on_team %></h4>
 <h2>Teams</h3>
-<%= form_for @tournament do |f| %>
-<table>
-    <tr>
-        <th>Teams</th>
-        <th>Paid</th>
-        <th>Mulligan</th>
-    </tr>
-    <%= f.fields_for :teams do |t| %>
-    <tr><td><%= f.label "Team #{@n+=1}" %></td></tr>
-    <%= t.fields_for :players do |p| %>
-        <tr>
-            <td><%= p.text_field :name, disabled: !(@tournament.new_record?) %> </td>
-            <td><%= p.check_box :paid %></td>
-            <td><%= p.check_box :mulligan%></td>
-        </tr>
-        <% end %>
-
-        <% end %>
-        <tr><td><%= f.submit %></td></tr>
-
-        <% end %>
-
-
-
-</table>
 
 <table>
 <tr>
