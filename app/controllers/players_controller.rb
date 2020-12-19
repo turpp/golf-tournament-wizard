@@ -13,6 +13,7 @@ def times
 end
     def new
          @n=params[:number].to_i
+         @player=Player.new
     end
 
     def create
@@ -25,7 +26,15 @@ end
     def show
         @player=Player.find_by(id: params[:id])
     end
+    def edit
+        @player=Player.find_by(id: params[:id])
 
+    end
+    def update
+        @player=Player.find_by(id: params[:id])
+        @player.update(player_params(params[:player]))
+        redirect_to player_path(@player)
+    end
 
     private
     def player_params(my_params)

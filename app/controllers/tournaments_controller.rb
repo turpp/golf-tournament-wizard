@@ -49,6 +49,18 @@ class TournamentsController < ApplicationController
         @n=0
     end
 
+    def destroy
+        tournament=Tournament.find_by(id: params[:id])
+        tournament.teams.each do |t|
+            t.players_teams.each do |pt|
+                pt.delete
+            end
+            t.delete
+        end
+        tournament.delete
+        redirect_to tournaments_path
+    end
+
     private
     def tournament_params
         params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])

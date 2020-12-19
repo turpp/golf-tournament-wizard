@@ -1,8 +1,10 @@
-<h1>Add Golfers</h1>
-<%= form_tag '/players', method: :post do %>
-<% @n.times do%>
-<%= render 'group_player_form' %>
-<br>
-<% end %>
-<%= submit_tag "submit" %>
+<h1>Edit Golfers</h1>
+<%= form_for @player do |f| %>
+<%= f.label :name %> 
+<%= f.text_field :name %> 
+<%= f.label :handicap %> 
+<%= f.text_field :handicap  %>
+<%= f.label :user_id %> 
+<%= f.number_field :user_id  %>
+<%= f.submit %>
 <% end %>
