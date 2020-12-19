@@ -60,6 +60,11 @@ class TournamentsController < ApplicationController
         tournament.delete
         redirect_to tournaments_path
     end
+    def start
+        @tournament=Tournament.find_by(id: params[:id])
+        @n=0
+        @players=@tournament.players
+    end
 
     private
     def tournament_params

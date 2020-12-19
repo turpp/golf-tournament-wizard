@@ -36,10 +36,18 @@ end
         redirect_to player_path(@player)
     end
 
+    def signed_in
+        @player=Player.find_by(id: params[:id])
+        @player.update(player_params(params[:player]))
+        #put in a flash that says update
+        redirect_to "/tournaments/#{params[:tournament_id]}/start"
+
+    end
+
     private
     def player_params(my_params)
         # params.require(:player).permit(:name, :handicap, :paid, :mulligan, :user_id)
-        my_params.permit(:name, :user_id, :handicap)
+        my_params.permit(:name, :user_id, :handicap, :mulligan, :paid)
     end
 
 end

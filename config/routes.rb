@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "/players/number", to: 'players#number'
   get '/teams/number/:tournament_id', to: 'teams#number'
   post '/teams/number', to: 'teams#times'
+  resources :tournaments do
+  patch '/players/:id/signed-in', to: 'players#signed_in'
+  end
 
   resources :tournaments
   resources :users
@@ -12,9 +15,8 @@ Rails.application.routes.draw do
 
   resources :teams
   resources :playersteams
-
   root "sessions#home"
-
+  get "/tournaments/:id/start", to: "tournaments#start"
   get "/players/new/:number", to: "players#new"
   post "/players/number", to: 'players#times'
 

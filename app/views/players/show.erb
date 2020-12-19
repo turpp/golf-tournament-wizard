@@ -1,6 +1,10 @@
 <h1><%= @player.name %></h1>
 <h4>Handicap</h4>
 <%= @player.handicap %>
+<h4>Paid</h4>
+<%= @player.paid %>
+<h4>Mulligan</h4>
+<%= @player.mulligan %>
 <h4>Tournaments Played In</h4>
 <% @player.tournaments.each do |t|%>
 - <%= t.name %>

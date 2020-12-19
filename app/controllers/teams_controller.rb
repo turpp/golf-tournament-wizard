@@ -70,6 +70,7 @@ class TeamsController < ApplicationController
         redirect_to tournament_path(i)
         
     end
+
     
     private
 
