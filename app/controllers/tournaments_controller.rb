@@ -24,12 +24,21 @@ class TournamentsController < ApplicationController
     end
 
     def update
-        byebug
         @tournament=Tournament.find_by(id: params[:id])
+        @tournament.teams.each do |t|
+            PlayersTeam.where(team_id: t.id).each do |pt|
+                pt.delete
+            end
+            t.delete
+        end
+    
         @tournament.update(tournament_params)
         # params[:tournament][:player_ids].each do |id|
         #     player=Player.find_by(id: id )
         #     @tournament.players << player
+        # end
+        # @tournament.players_teams.each do |pt|
+        #     pt.update(players_teams_params)
         # end
         redirect_to tournament_path(@tournament)
     end
@@ -42,7 +51,11 @@ class TournamentsController < ApplicationController
 
     private
     def tournament_params
-        params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team)
+        params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])
+    end
+
+    def players_teams_params
+        params.require(:tournament).permit(players_teams_attributes: [:player_id])
     end
 end
 

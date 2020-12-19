@@ -1,0 +1,8 @@
+<h1>Add Golfers</h1>
+<%= form_tag '/players', method: :post do %>
+<% @n.times do%>
+<%= render 'group_player_form' %>
+<br>
+<% end %>
+<%= submit_tag "submit" %>
+<% end %>

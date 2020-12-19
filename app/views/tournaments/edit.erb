@@ -17,8 +17,16 @@
 <br>
 <br>
 <br>
-
-
+<%= f.fields_for :teams do |t| %>
+<%= t.label "Team #{@n+=1}" %>
+----------------------------
+<br>
+<%= t.fields_for :players_teams do |pt| %>
+<%= pt.label "Golfer:" %>
+<%= pt.collection_select :player_id, Player.all, :id, :name %>
+<br>
+<% end %>
+<% end %>
 
 
 
