@@ -1,0 +1,32 @@
+<h1><%= @tournament.name %></h1>
+<h4>Entry Fee:<%= @tournament.entry_fee %>
+<h4>Number of Golfers on a Team:<%= @tournament.players_on_team %></h4>
+<h2>Teams</h3>
+<% @teams.each do |team| %>
+<%= "Team #{@n+=1}" %>
+<% team.players_teams.each do |pt| %>
+<%= form_for pt do |f| %>
+<%= f.label "#{pt.player.name}" %>
+<%= f.label :paid %>
+<%= f.check_box :paid %>
+<%= f.label :mulligan %>
+<%= f.check_box :mulligan %>
+<%= f.submit %>
+<% end %>
+<% end %>
+<% end %>
+
+<h3>Add Team</h3>
+<%= form_for @team do |f| %>
+<%= f.label :divison %>
+<%= f.text_field :divison %>
+<%@tournament.players_on_team.times do %>
+Golfer:
+<%= collection_select "team[player_ids][][id]", :id, Player.all, :id, :name, prompt: true %>
+<br>
+<% end %>
+<%= hidden_field_tag "team[tournament_id]", @tournament.id %>
+<%= hidden_field_tag "signup", true %>
+<%= f.submit %>
+<% end %>
+
