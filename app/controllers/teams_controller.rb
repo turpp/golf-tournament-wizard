@@ -34,20 +34,20 @@ class TeamsController < ApplicationController
         
 
     def update
-        # byebug
-        if params[:signups]=='true'
-            team=Team.find_by(id: params[:id])
-            team.update(team_params(params[:team]))
-            redirect_to "/teams/signup/#{team.tournament_id}"
-        else
-        team=Team.find_by(id: params[:id])
-        PlayersTeam.where(team_id: team.id).each do |pt|
-            pt.delete
-        end
-        team.update(team_params(params[:team]))
+        byebug
+        # if params[:signups]=='true'
+        #     team=Team.find_by(id: params[:id])
+        #     team.update(team_params(params[:team]))
+        #     redirect_to "/teams/signup/#{team.tournament_id}"
+        # else
+        # team=Team.find_by(id: params[:id])
+        # PlayersTeam.where(team_id: team.id).each do |pt|
+        #     pt.delete
+        # end
+        # team.update(team_params(params[:team]))
     
-        redirect_to tournament_path(team.tournament_id)
-        end
+        # redirect_to tournament_path(team.tournament_id)
+        # end
     end
 
     def tournament
@@ -84,6 +84,7 @@ class TeamsController < ApplicationController
         @tournament=Tournament.find_by(id: params[:tournament_id])
         @teams=@tournament.teams
         @g=0
+        @n=0
         
     end
 

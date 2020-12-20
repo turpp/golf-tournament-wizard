@@ -3,8 +3,6 @@ class CreateTeams < ActiveRecord::Migration[6.0]
     create_table :teams do |t|
       t.integer :final_score
       t.string :divison
-      t.boolean :mulligan, default: false
-      t.boolean :paid, default: false
 
       t.belongs_to :tournament, null: false, foreign_key: true
 
