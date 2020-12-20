@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/teams/number', to: 'teams#times' 
   get '/holes/round_entry/teams/:team_id', to: 'holes#round_entry'
   get '/teams/round/:team_id', to: "teams#round"
+  get '/tournaments/:touranment_id/posting', to: "tournaments#posting"
   resources :tournaments
   resources :users
   resources :players

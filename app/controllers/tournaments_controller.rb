@@ -62,6 +62,13 @@ class TournamentsController < ApplicationController
         redirect_to tournaments_path
     end
 
+    def posting
+        @tournament=Tournament.find_by(id: params[:touranment_id])
+        @players=@tournament.players
+        @n=0
+        @h=0
+    end
+
     private
     def tournament_params
         params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])

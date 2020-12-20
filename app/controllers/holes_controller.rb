@@ -10,12 +10,11 @@ class HolesController < ApplicationController
     end
 
     def create
-        byebug
+        team=Team.find_by(id: params[:hole].first[:team_id].to_i)
         params[:hole].each do |hole|
-            byebug
-            # @hole=Hole.create(player_params(hole))
+            @hole=Hole.create(hole_params(hole))
         end
-        # redirect_to "/teams/round/#{@hole.team_id}"
+        redirect_to "/tournaments/#{team.tournament.id}/posting"
     end
 
     def edit

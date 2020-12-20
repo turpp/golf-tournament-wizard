@@ -80,14 +80,14 @@ class TeamsController < ApplicationController
     end
     def destroy
 
-
-        team=Team.find_by(id: params[:id])
-        i=team.tournament_id
-        team.players_teams.each do |pt|
-            pt.delete
-        end
-        team.delete
-        redirect_to tournament_path(i)
+byebug
+        # team=Team.find_by(id: params[:id])
+        # i=team.tournament_id
+        # team.players_teams.each do |pt|
+        #     pt.delete
+        # end
+        # team.delete
+        # redirect_to tournament_path(i)
         
     end
 
