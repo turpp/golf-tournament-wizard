@@ -5,10 +5,6 @@ class HolesController < ApplicationController
     @i=0
     end
 
-    def new
-
-    end
-
     def create
         team=Team.find_by(id: params[:round][:team_id].to_i)
         round=Round.create(round_params)
@@ -21,13 +17,7 @@ class HolesController < ApplicationController
         redirect_to "/tournaments/#{team.tournament.id}/posting"
     end
 
-    def edit
 
-    end
-
-    def update
-
-    end
 
     private
     def hole_params(my_params)

@@ -1,16 +1,11 @@
 class TeamsController < ApplicationController
     
     def number
-        byebug
     end
 
-    def show
-    end
 
     def new
         @n=params[:number].to_i
-        @team=Team.new
-        @team.players.build
         @tournament=Tournament.find_by(id: params[:tournament_id])
         @players_on_team=@tournament.players_on_team
     end
@@ -46,19 +41,13 @@ class TeamsController < ApplicationController
         
 
     def update
-        byebug
-        # if params[:signups]=='true'
-        #     team=Team.find_by(id: params[:id])
-        #     team.update(team_params(params[:team]))
-        #     redirect_to "/teams/signup/#{team.tournament_id}"
-        # else
-        # team=Team.find_by(id: params[:id])
-        # PlayersTeam.where(team_id: team.id).each do |pt|
-        #     pt.delete
-        # end
-        # team.update(team_params(params[:team]))
+        team=Team.find_by(id: params[:id])
+        PlayersTeam.where(team_id: team.id).each do |pt|
+            pt.delete
+        end
+        team.update(team_params(params[:team]))
     
-        # redirect_to tournament_path(team.tournament_id)
+        redirect_to tournament_path(team.tournament_id)
         # end
     end
 
@@ -80,14 +69,20 @@ class TeamsController < ApplicationController
     end
     def destroy
 
-byebug
-        # team=Team.find_by(id: params[:id])
-        # i=team.tournament_id
-        # team.players_teams.each do |pt|
-        #     pt.delete
-        # end
-        # team.delete
-        # redirect_to tournament_path(i)
+        team=Team.find_by(id: params[:id])
+        i=team.tournament_id
+        team.players_teams.each do |pt|
+            pt.delete
+        end
+
+        team.rounds.each do |round|
+            round.holes.each do |hole|
+                hole.delete
+            end
+            round.delete
+        end
+        team.delete
+        redirect_to tournament_path(i)
         
     end
 
