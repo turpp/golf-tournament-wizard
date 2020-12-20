@@ -12,10 +12,9 @@
 <h6>Click on Team to edit</h6>
 <% @tournament.teams.each do |team|%>
 <br>
-<%= link_to "Team #{@n+=1}", edit_team_path(team.id) %>
-<%= link_to "Enter Team's Score", "/holes/round_entry/teams/#{team.id}"%>
+<%= link_to "Team #{@n+=1}", edit_team_path(team.id) %><br>
+-----------------------------------
 <br>
-----------------------------------
 <% team.players.each do |player| %>
 <%= player.name %>
 <br>
@@ -29,5 +28,5 @@
 <br>
 <%= link_to "Add Golfers to Clubhouse", players_number_path %>
 <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}" %>
-<%= link_to "Start Signups", "/players/signups/tournaments/#{@tournament.id}" %>
+<%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}" %>
 <%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>
