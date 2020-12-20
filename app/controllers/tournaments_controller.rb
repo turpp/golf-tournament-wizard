@@ -67,11 +67,12 @@ class TournamentsController < ApplicationController
         @players=@tournament.players
         @n=0
         @h=0
+        @r=0
     end
 
     private
     def tournament_params
-        params.require(:tournament).permit(:name, :date, :entry_fee, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])
+        params.require(:tournament).permit(:name, :date, :entry_fee, :number_of_rounds, :holes_per_round, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])
     end
 
     def players_teams_params

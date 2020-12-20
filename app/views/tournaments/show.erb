@@ -1,6 +1,8 @@
 <h1><%= @tournament.name %></h1>
 <br>
 <h4>Entry Fee: $<%= @tournament.entry_fee %></h4>
+<h4>Number of Rounds: <%= @tournament.number_of_rounds %>
+<h4>Number of Holes per Round: <%= @tournament.holes_per_round %></h4>
 
 <h4>Players</h4>
 <% @players.each do |p| %>

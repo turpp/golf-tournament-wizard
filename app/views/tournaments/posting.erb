@@ -9,10 +9,10 @@
 <% end %>
 
 <h4>Teams</h4>
-<h6>Click on Team to edit</h6>
 <% @tournament.teams.each do |team|%>
 <br>
 <% @h=0%>
+<% @r=0%>
 <%= "Team #{@n+=1}" %>
 <%= link_to "Enter Team's Score", "/holes/round_entry/teams/#{team.id}"%>
 <br>
@@ -21,8 +21,11 @@
 <%= player.name %>
 <br>
 <% end %>
-<% team.holes.each do |hole| %>
+<% team.rounds.each do |round| %>
+<%= "Round #{@r+=1}" %><br>
+<% round.holes.each do |hole| %>
 <%= "Hole #{@h+=1}: #{hole.score}" %>
+<% end %>
 <% end %>
 <% end %>
 <br>

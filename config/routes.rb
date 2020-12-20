@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rounds
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   post '/teams/times/:tournament_id', to: 'teams#times'
   get '/teams/signup/:tournament_id', to: "teams#signup"
