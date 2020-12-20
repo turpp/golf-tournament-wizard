@@ -16,5 +16,7 @@ class Team < ApplicationRecord
       total << round.score
     end
     self.final_score=total.inject(0){|sum,x| sum + x }
+    self.save
+    self.final_score
   end
 end

@@ -62,6 +62,18 @@ class TournamentsController < ApplicationController
         @r=0
     end
 
+    def results
+        @tournament=Tournament.find_by(id: params[:tournament_id])
+        @t=0
+        @h=0
+        @r=0
+        hsh={}
+        @tournament.teams.each do |team|
+            hsh[team] = team.final_score
+        end
+        @teams=hsh.sort_by {|team, final_score| final_score}
+    end
+
     private
     def tournament_params
         params.require(:tournament).permit(:name, :date, :entry_fee, :number_of_rounds, :holes_per_round, :user_id, :players_on_team, teams_attributes: [players_teams_attributes: [:player_id]])

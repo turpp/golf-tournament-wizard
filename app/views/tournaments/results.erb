@@ -1,0 +1,19 @@
+<h1><%= @tournament.name %></h1>
+<h3>Scores:</h3>
+<% @teams.each do |team, final_score| %>
+<%= "Team #{@t+=1}" %>
+<% team.players.each do |player| %>
+<%= player.name %>
+<% end %>
+<% team.rounds.each do |round| %>
+<br>
+<%= "Round #{@r+=1}" %><br>
+<% round.holes.each do |hole| %>
+    <%= "Hole #{@h+=1}:#{hole.score}" %>
+    <% end %>
+<% @h=0 %>
+<% end %>
+<% @r=0%>
+<%= "Total: #{team.total_score}" %>
+<br>
+<% end %>

@@ -9,6 +9,8 @@ class Round < ApplicationRecord
       hole_scores << hole.score
     end
     self.score=hole_scores.inject(0){|sum,x| sum + x }
+    self.save
+    self.score
   end
 
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/holes/round_entry/teams/:team_id', to: 'holes#round_entry'
   get '/teams/round/:team_id', to: "teams#round"
   get '/tournaments/:touranment_id/posting', to: "tournaments#posting"
+  get '/tournaments/:tournament_id/results', to: "tournaments#results"
   resources :tournaments
   resources :users
   resources :players
