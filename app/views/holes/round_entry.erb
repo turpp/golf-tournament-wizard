@@ -1,0 +1,13 @@
+<h1><%= @team.tournament.name %></h1>
+<% @team.players.each do |p| %>
+<%= "Golfer #{@n+=1}: #{p.name}" %>
+<% end %>
+
+
+<%= form_tag '/holes', method: :post do %>
+<% 18.times do%>
+<%= render 'group_hole_form' %>
+<br>
+<% end %>
+<%= submit_tag "submit" %>
+<% end %>

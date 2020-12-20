@@ -11,7 +11,7 @@
 <%= f.check_box :paid %>
 <%= f.label :mulligan %>
 <%= f.check_box :mulligan %>
-<%= f.submit %>
+<%= f.submit "Check in" %>
 <% end %>
 <% end %>
 <% end %>
@@ -26,7 +26,10 @@ Golfer:
 <br>
 <% end %>
 <%= hidden_field_tag "team[tournament_id]", @tournament.id %>
-<%= hidden_field_tag "signup", true %>
-<%= f.submit %>
+<%= hidden_field_tag "checkin", true %>
+<%= f.submit  %>
 <% end %>
+<br>
+<h6>If golfers are not in drop down for team add them to clubhouse</h6>
+<%= link_to "Add Golfers to Clubhouse", players_number_path %>
 
