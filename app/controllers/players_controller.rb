@@ -33,11 +33,7 @@ end
     def update
         @player=Player.find_by(id: params[:id])
         @player.update(player_params(params[:player]))
-        if params[:tournament_id]
-            redirect_to "/players/signups/tournaments/#{params[:tournament_id].to_i}"
-        else
             redirect_to player_path(@player)
-        end
     end
 
     def signups
@@ -61,7 +57,7 @@ end
     private
     def player_params(my_params)
         # params.require(:player).permit(:name, :handicap, :paid, :mulligan, :user_id)
-        my_params.permit(:name, :user_id, :handicap, :mulligan, :paid)
+        my_params.permit(:name, :user_id, :handicap)
     end
 
 end
