@@ -43,7 +43,9 @@ end
     def signups
         @tournament=Tournament.find_by(id: params[:tournament_id])
         @n=0
+        @g=0
         @players=@tournament.players
+        @team=Team.new
     end
 
 

@@ -21,13 +21,18 @@ class TeamsController < ApplicationController
 
     def create
         params[:team].each do |t|
+            byebug
         @team=Team.create(team_params(t))
         t[:player_ids].each do |p|
         player=Player.find_by(id: p[:id][:id].to_i)
         @team.players << player
         end
-    end
+        end
+    if params[:signups]==true
+        render "/players/signups/tournaments/#{@team.tournament_id}"
+    else
     redirect_to tournament_path(@team.tournament_id)
+    end
 
         
     end

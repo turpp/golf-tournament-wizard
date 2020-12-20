@@ -28,5 +28,5 @@
 <br>
 <%= link_to "Add Golfers to Clubhouse", players_number_path %>
 <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}" %>
-<%= link_to "Start Signups", "/tournaments/#{@tournament.id}/start" %>
+<%= link_to "Start Signups", "/players/signups/tournaments/#{@tournament.id}" %>
 <%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>

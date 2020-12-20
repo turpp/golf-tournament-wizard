@@ -8,7 +8,7 @@
 
 <% @players.each do |player| %>
 <%= form_with model: player do |f| %>
-<%= f.text_field :name %>
+<%= f.text_field :name, disabled: 12345 %>
 <%= f.check_box :paid %>
 <%= f.check_box :mulligan %>
 <%= hidden_field_tag :tournament_id, @tournament.id %>
@@ -17,5 +17,17 @@
 <% end %>
 
 
-<%= link_to "Add Player", players_number_path %>
+<br>
+<br>
+<h3>Add Team</h3>
+<%= form_with url: '/teams', method: :post do |t| %>
+<%= t.label :divison %>
+<%= t.text_field "team[][divison]" %>
+<% @tournament.players_on_team.times do%>
+<%= "Golfer #{@g+=1}" %>
+<%= collection_select "team[][player_ids][][id]", :id, Player.all, :id, :name, prompt: true %>
+<% end %>
+<%= hidden_field_tag :signups, true %>
+<%= t.submit %>
+<% end %>
 
