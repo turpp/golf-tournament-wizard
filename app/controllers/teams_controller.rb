@@ -48,15 +48,8 @@ class TeamsController < ApplicationController
         team.update(team_params(params[:team]))
     
         redirect_to tournament_path(team.tournament_id)
-        # end
     end
 
-    def tournament
-        @tournament=Tournament.find_by(id: params[:id])
-        @teams=@tournament.teams
-        @n=0
-        @i=0
-    end
 
     def number
     
@@ -68,7 +61,6 @@ class TeamsController < ApplicationController
         redirect_to "/teams/new/#{n}/#{tournament_id}"
     end
     def destroy
-
         team=Team.find_by(id: params[:id])
         i=team.tournament_id
         team.players_teams.each do |pt|
@@ -83,22 +75,9 @@ class TeamsController < ApplicationController
         end
         team.delete
         redirect_to tournament_path(i)
-        
     end
 
-    # ======================================
-    def signup
-        @tournament=Tournament.find_by(id: params[:tournament_id])
-        @teams=@tournament.teams
-        @g=0
-        @n=0
-        
-    end
 
-    def round
-        @team=Team.find_by(id: params[:team_id])
-        @n=0
-    end
 
     
     private

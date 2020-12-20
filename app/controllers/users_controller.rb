@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
     end
 
     def edit
