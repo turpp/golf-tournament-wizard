@@ -4,10 +4,7 @@ Rails.application.routes.draw do
 
   get "/players/number", to: 'players#number'
   get '/teams/number/:tournament_id', to: 'teams#number'
-  post '/teams/number', to: 'teams#times'
-  patch '/players/:id/signed-in', to: 'players#signed_in'
-
-  get '/players/signups/tournaments/:tournament_id', to: 'players#signups'
+  # post '/teams/number', to: 'teams#times' {not sure if this is in use or not. i dont think so}
   resources :tournaments
   resources :users
   resources :players
