@@ -1,0 +1,21 @@
+<h1><%= @tournament.name %></h1>
+<h4>Entry Fee:<%= @tournament.entry_fee %>
+<h4>Number of Golfers on a Team:<%= @tournament.players_on_team %></h4>
+<h2>Teams</h3>
+
+
+
+
+<% @players.each do |player| %>
+<%= form_with model: player do |f| %>
+<%= f.text_field :name %>
+<%= f.check_box :paid %>
+<%= f.check_box :mulligan %>
+<%= hidden_field_tag :tournament_id, @tournament.id %>
+<%= f.submit %>
+<% end %>
+<% end %>
+
+
+<%= link_to "Add Player", players_number_path %>
+

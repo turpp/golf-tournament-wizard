@@ -33,14 +33,26 @@ end
     def update
         @player=Player.find_by(id: params[:id])
         @player.update(player_params(params[:player]))
-        redirect_to player_path(@player)
+        if params[:tournament_id]
+            redirect_to "/players/signups/tournaments/#{params[:tournament_id].to_i}"
+        else
+            redirect_to player_path(@player)
+        end
     end
+
+    def signups
+        @tournament=Tournament.find_by(id: params[:tournament_id])
+        @n=0
+        @players=@tournament.players
+    end
+
 
     def signed_in
         @player=Player.find_by(id: params[:id])
         @player.update(player_params(params[:player]))
         #put in a flash that says update
-        redirect_to "/tournaments/#{params[:tournament_id]}/start"
+
+        redirect_to "/players/signups/tournaments/#{params[:tournament_id].to_i}"
 
     end
 

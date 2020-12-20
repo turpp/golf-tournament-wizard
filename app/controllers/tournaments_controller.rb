@@ -24,6 +24,7 @@ class TournamentsController < ApplicationController
     end
 
     def update
+        byebug
         @tournament=Tournament.find_by(id: params[:id])
         @tournament.teams.each do |t|
             PlayersTeam.where(team_id: t.id).each do |pt|
@@ -59,11 +60,6 @@ class TournamentsController < ApplicationController
         end
         tournament.delete
         redirect_to tournaments_path
-    end
-    def start
-        @tournament=Tournament.find_by(id: params[:id])
-        @n=0
-        @players=@tournament.players
     end
 
     private
