@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
     
-    def new
-        @user=User.new
-        3.times{@user.players.build}
-    end
 
     def create
         user=User.create(user_params)
@@ -19,8 +15,13 @@ class UsersController < ApplicationController
 
     def show
         @user=User.find_by(id: params[:id])
+        if helpers.current_user == @user
         @tournaments=@user.tournaments
         @players=@user.players
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
+
     end
 
     private

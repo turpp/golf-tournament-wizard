@@ -20,7 +20,7 @@ class TournamentsController < ApplicationController
     def edit
         @tournament=Tournament.find_by(id: params[:id])
         if helpers.current_user.tournament_ids.include?(@tournament.id)
-        @players=Player.all
+        @players=helpers.current_user.players
         @teams=@tournament.teams
         @n=0
         @g=0

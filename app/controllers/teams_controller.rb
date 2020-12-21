@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
     def edit
         @team=Team.find_by(id: params[:id])
         if helpers.current_user.tournament_ids.include?(@team.tournament_id)
+            @players=helpers.current_user.players
         else
             redirect_to root_path, alert: "You can't do that!"
         end

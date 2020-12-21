@@ -22,7 +22,7 @@
 <%= f.text_field :divison %>
 <%@tournament.players_on_team.times do %>
 Golfer:
-<%= collection_select "team[player_ids][][id]", :id, Player.all, :id, :name, prompt: true %>
+<%= collection_select "team[player_ids][][id]", :id, @players, :id, :name, prompt: true %>
 <br>
 <% end %>
 <%= hidden_field_tag "team[tournament_id]", @tournament.id %>

@@ -9,6 +9,7 @@ class PlayersTeamsController < ApplicationController
         @n=0
         @team=Team.new
         @all=[]
+        @players=helpers.current_user.players
         else
             redirect_to root_path, alert: "You can't do that!"
         end
