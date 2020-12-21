@@ -4,7 +4,6 @@
 <%= f.text_field :name %> 
 <%= f.label :handicap %> 
 <%= f.text_field :handicap  %>
-<%= f.label :user_id %> 
-<%= f.number_field :user_id  %>
+<%= f.hidden_field :user_id, value: session[:user_id] %>
 <%= f.submit %>
 <% end %>

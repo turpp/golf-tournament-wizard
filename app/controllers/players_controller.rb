@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
-    def index
-        #need to make @players just for the current user
-        
-        @players=Player.all 
+    before_action :require_login
+    
+    def index        
+        @players=helpers.current_user.players 
     end
 def number
 end
@@ -24,10 +24,18 @@ end
     end
     
     def show
+        if helpers.current_user.player_ids.include?(params[:id].to_i)
         @player=Player.find_by(id: params[:id])
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
     end
     def edit
+        if helpers.current_user.player_ids.include?(params[:id].to_i)
         @player=Player.find_by(id: params[:id])
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
 
     end
     def update
@@ -42,5 +50,9 @@ end
         # params.require(:player).permit(:name, :handicap, :paid, :mulligan, :user_id)
         my_params.permit(:name, :user_id, :handicap)
     end
+
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+      end
 
 end
