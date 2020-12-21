@@ -1,17 +1,28 @@
 class TeamsController < ApplicationController
-    
+    before_action :require_login
+
     def number
     end
 
 
     def new
+        if helpers.current_user.tournament_ids.include?(params[:tournament_id].to_i)
         @n=params[:number].to_i
         @tournament=Tournament.find_by(id: params[:tournament_id])
         @players_on_team=@tournament.players_on_team
+        @players=helpers.current_user.players
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
     end
 
     def edit
         @team=Team.find_by(id: params[:id])
+        if helpers.current_user.tournament_ids.include?(@team.tournament_id)
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
+
     end
 
     def create
@@ -62,6 +73,7 @@ class TeamsController < ApplicationController
     end
     def destroy
         team=Team.find_by(id: params[:id])
+        if helpers.current_user.tournament_ids.include?(team.tournament_id)
         i=team.tournament_id
         team.players_teams.each do |pt|
             pt.delete
@@ -75,6 +87,10 @@ class TeamsController < ApplicationController
         end
         team.delete
         redirect_to tournament_path(i)
+    else
+        redirect_to root_path, alert: "You can't do that!"
+    end
+
     end
 
 
@@ -86,6 +102,9 @@ class TeamsController < ApplicationController
         my_params.permit(:final_score, :tournament_id, :paid, :mulligan, :divison, players_teams_attributes: [:player_id])
     end
 
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+      end
 
 
 end
