@@ -1,11 +1,10 @@
 class TournamentsController < ApplicationController
     def index
         #need to add make @tournaments pull only the current user touraments with the seession
-        @tournaments=Tournament.all
+        @tournaments=helpers.current_user.tournaments
     end
 
     def new
-        byebug
         @tournament=Tournament.new
         @players=Player.all
     end
