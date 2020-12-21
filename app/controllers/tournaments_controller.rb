@@ -5,6 +5,7 @@ class TournamentsController < ApplicationController
     end
 
     def new
+        byebug
         @tournament=Tournament.new
         @players=Player.all
     end

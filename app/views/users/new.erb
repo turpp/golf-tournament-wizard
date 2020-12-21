@@ -1,0 +1,9 @@
+<%= form_for @user do |f| %>
+  Golf Course Name: <%= f.text_field :name %>
+  Phone Number: <%= f.number_field :phone_number %>
+  Address: <%= f.text_field :address %>
+  Username: <%= f.text_field :username %>
+  Password: <%= f.password_field :password %>
+  Password Confirmation: <%= f.password_field :password_confirmation %>
+  <%= f.submit "Submit" %>
+<% end %> 

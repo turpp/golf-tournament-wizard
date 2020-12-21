@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   get '/teams/round/:team_id', to: "teams#round"
   get '/tournaments/:touranment_id/posting', to: "tournaments#posting"
   get '/tournaments/:tournament_id/results', to: "tournaments#results"
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  post '/logout', to: 'sessions#destroy'
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
   resources :tournaments
   resources :users
   resources :players
