@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
+  get '/auth/facebook/callback' => 'sessions#create' 
   resources :tournaments
   resources :users
   resources :players

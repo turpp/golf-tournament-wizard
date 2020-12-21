@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 7) do
     t.string "phone_number"
     t.string "password_digest"
     t.string "username"
+    t.string "uid"
+    t.string "email"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
