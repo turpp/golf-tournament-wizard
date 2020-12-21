@@ -1,12 +1,14 @@
 class TournamentsController < ApplicationController
+    before_action :require_login
+    skip_before_action :require_login, only: [:results]
+
+
     def index
-        #need to add make @tournaments pull only the current user touraments with the seession
         @tournaments=helpers.current_user.tournaments
     end
 
     def new
         @tournament=Tournament.new
-        @players=Player.all
     end
 
     def create
@@ -17,10 +19,15 @@ class TournamentsController < ApplicationController
 
     def edit
         @tournament=Tournament.find_by(id: params[:id])
+        if helpers.current_user.tournament_ids.include?(@tournament.id)
         @players=Player.all
         @teams=@tournament.teams
         @n=0
         @g=0
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
+    
     end
 
     def update
@@ -44,6 +51,7 @@ class TournamentsController < ApplicationController
 
     def destroy
         tournament=Tournament.find_by(id: params[:id])
+        if helpers.current_user.tournament_ids.include?(tournament.id)
         tournament.teams.each do |t|
             t.players_teams.each do |pt|
                 pt.delete
@@ -52,14 +60,24 @@ class TournamentsController < ApplicationController
         end
         tournament.delete
         redirect_to tournaments_path
+    else
+        redirect_to root_path, alert: "You can't do that!"
+    end
+
     end
 
     def posting
         @tournament=Tournament.find_by(id: params[:touranment_id])
+        if helpers.current_user.tournament_ids.include?(@tournament.id)
         @players=@tournament.players
         @n=0
         @h=0
         @r=0
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
+    
+            
     end
 
     def results
@@ -82,5 +100,9 @@ class TournamentsController < ApplicationController
     def players_teams_params
         params.require(:tournament).permit(players_teams_attributes: [:player_id])
     end
+    def require_login
+        return head(:forbidden) unless session.include? :user_id
+      end
+
 end
 
