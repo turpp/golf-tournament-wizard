@@ -9,14 +9,13 @@
 <%= f.date_field :date %>
 <%= f.label :entry_fee %>
 <%= f.number_field :entry_fee %>
-<%= f.label :user_id %>
-<%= f.number_field :user_id %>
 <%= f.label :players_on_team %>
 <%= f.number_field :players_on_team %>
 <%= f.label :number_of_rounds %>
 <%= f.number_field :number_of_rounds %>
 <%= f.label :holes_per_round %>
 <%= f.number_field :holes_per_round %>
+<%= f.hidden_field :user_id, value: session[:user_id] %>
 
 <br>
 <br>
