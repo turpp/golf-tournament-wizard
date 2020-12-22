@@ -44,9 +44,14 @@ class TournamentsController < ApplicationController
     end
 
     def show
+        if helpers.current_user.tournament_ids.include?(params[:id].to_i)
         @tournament=Tournament.find_by(id: params[:id])
         @players=@tournament.players
         @n=0
+        else
+            redirect_to root_path, alert: "You can't do that!"
+        end
+
     end
 
     def destroy
