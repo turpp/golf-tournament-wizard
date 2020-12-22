@@ -1,21 +1,123 @@
-<h1><%= @user.name %></h1>
+  <style>
+.jumbotron {
+    background-color: #226F54;
+    color: #fff;
+}
+</style>
 
-<h4>Tournaments</h4>
-<% @tournaments.each do |t| %>
-<%= link_to t.name, tournament_path(t.id) %>
-<br>
-<% end %>
-<br>
-<%= link_to "All Tournaments", tournaments_path %>
-<%= link_to "Add New Tournament", new_tournament_path %>
+  
+  
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
+    <div class="container">
+      <a class="navbar-brand" href="/">Tournament Wizard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= user_path(@user) %>">Clubhouse
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments">All Tournaments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments/new">Create Tournament</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", logout_path, method: :post %>
+          </li>
 
-<br>
-<br>
-<h4>Players</h4>
-<% @players.each do |p| %>
-<%= p.name %>
-<br>
-<% end %>
-<%= link_to "All Players", players_path %>
-<%= link_to "Add Player", players_number_path %>
-<%= button_to "Logout", logout_path, method: :post %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  
+  
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-3">
+      <h1 class="display-3">Welcome <%= @user.name %>!</h1>
+      <p class="lead">Congrats on letting Tournament Wizard bring back the magic to your tournaments. This is the home for your clubhouse. From this page you will be able to do many things to help make tournament day a breeze!</p>
+    </header>
+
+    <!-- Page Features -->
+    <div class="d-flex justify-content-center">
+
+      <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://img.freepik.com/free-vector/golf-tournament-club-logo-labe_24877-1969.jpg?size=338&ext=jpg" alt="Tournament">
+          <div class="card-body">
+            <h4 class="card-title">Tournaments</h4>
+            <p class="card-text">Tournament Wizard allow you to:</p>
+            <p class="card-text">- create</p>
+            <p class="card-text">- edit</p>
+            <p class="card-text">- host sign ups</p>
+            <p class="card-text">- post scores</p>
+            <p class="card-text">- Post results for golfers to see!</p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "All Tournaments", tournaments_path, class: "btn btn-primary" %>
+            <%= link_to "Add New Tournament", new_tournament_path, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/golfer-1580197-1335346.png" alt="Golfer">
+          <div class="card-body">
+            <h4 class="card-title">Golfers</h4>
+            <p class="card-text">Just like tournaments Golfers are vital for the best experience using this application. In order to have teams in your tournament you must first add the golfer to your club house. Once they have been added to the club house you will be able to add them to teams as needed. Don't worry if you add a cranky golfer you can always remove them to! Its important that you include the name of the golfer. The handicap is an optional field.</p>
+          </div>
+          <div class="card-footer">
+            <%= link_to "All Players", players_path, class: "btn btn-primary"  %>
+            <%= link_to "Add Player", players_number_path, class: "btn btn-primary" %>    
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://static.thenounproject.com/png/5075-200.png" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Comming Soon</h4>
+            <p class="card-text">We are always striving to make tournament day smooth. Some additional features we are working on:</p>
+            <p class="card-text">- Detailed payout calculations
+            <p class="card-text">- Clubhouse dashboard
+            <p class="card-text">- Golfer report card
+            <p class="card-text">- Golfers stats with dedicated golfer logins
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
