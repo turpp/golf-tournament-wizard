@@ -25,8 +25,9 @@
 <%= "Round #{@r+=1}" %><br>
 <% round.holes.each do |hole| %>
 <%= "Hole #{@h+=1}: #{hole.score}" %>
-<%= "Total: #{round.round_total}" %>
 <% end %>
+<%= "Total: #{round.round_total}" %>
+
 <br>
 <% end %>
 <%= "Total Score #{team.total_score}" %>
