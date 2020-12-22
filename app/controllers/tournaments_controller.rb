@@ -13,8 +13,13 @@ class TournamentsController < ApplicationController
 
     def create
 
-        t=Tournament.create(tournament_params)
-        redirect_to tournament_path(t)
+        @tournament=Tournament.new(tournament_params)
+        if @tournament.valid?
+            @tournament.save
+        redirect_to tournament_path(@tournament)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -31,7 +36,14 @@ class TournamentsController < ApplicationController
     end
 
     def update
+        # make it where it renders what was entered to cause the error
+        @n=0
+        @g=0
+        @players=helpers.current_user.players
+
         @tournament=Tournament.find_by(id: params[:id])
+
+        if Tournament.new(tournament_params).valid?
         @tournament.teams.each do |t|
             PlayersTeam.where(team_id: t.id).each do |pt|
                 pt.delete
@@ -41,6 +53,10 @@ class TournamentsController < ApplicationController
     
         @tournament.update(tournament_params)
         redirect_to tournament_path(@tournament)
+    else
+        @tournament.update(tournament_params)
+        render :edit
+    end
     end
 
     def show

@@ -7,4 +7,5 @@ class Tournament < ApplicationRecord
     accepts_nested_attributes_for :teams
     accepts_nested_attributes_for :players_teams
     has_many :rounds, through: :teams
+    validates :name, :date, :players_on_team, :number_of_rounds, :holes_per_round, presence: true
 end
