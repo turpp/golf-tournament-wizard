@@ -45,13 +45,18 @@ class TeamsController < ApplicationController
                 redirect_to "/players_teams/checkin/#{@team.tournament_id}"
             end
         else
+           
 
             params[:team].each do |t|
-                @team=Team.create(team_params(t))
+                @team=Team.new(team_params(t))
                 t[:player_ids].each do |p|
-                    player=Player.find_by(id: p[:id][:id].to_i)
+                    if player=Player.find_by(id: p[:id][:id].to_i)
                     @team.players << player
+                    else
+                       return redirect_to "/teams/new/#{params[:team].count}/#{@team.tournament_id}", alert: "Must select Golfer from the drop down." 
+                    end
                 end
+                @team.save
             end
             redirect_to tournament_path(@team.tournament_id)
         end
@@ -75,9 +80,13 @@ class TeamsController < ApplicationController
     end
 
     def times
+        if !params[:number].blank?
         tournament_id=params[:tournament_id]
         n=params[:number].to_i
         redirect_to "/teams/new/#{n}/#{tournament_id}"
+        else
+            redirect_to "/teams/number/#{params[:tournament_id]}", alert: "You must enter a number."
+        end
     end
     def destroy
         team=Team.find_by(id: params[:id])

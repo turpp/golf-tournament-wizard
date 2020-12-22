@@ -3,8 +3,7 @@
 <%= f.number_field :final_score %>
 <%= f.label :divison %>
 <%= f.text_field :divison %>
-<%= f.label :tournament_id %>
-<%= f.number_field :tournament_id %>
+<%= f.hidden_field :tournament_id, value: @team.tournament_id %>
 <br>
 <%= f.fields_for :players_teams do |pt| %>
 <%= pt.label "Team Member:" %>
