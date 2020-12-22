@@ -1,3 +1,17 @@
+<% if @player.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      An Error prohibited this article from being saved:
+    </h2>
+
+    <ul>
+    <% @player.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %> 
+
 <h1>Edit Golfers</h1>
 <%= form_for @player do |f| %>
 <%= f.label :name %> 

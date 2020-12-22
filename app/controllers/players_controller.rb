@@ -17,10 +17,16 @@ end
     end
 
     def create
+        @n=params[:number].to_i
         params[:player].each do |player|
-            Player.create(player_params(player))
+            @player=Player.create(player_params(player))
+            if !@player.valid?
+                return render :new
+            end
         end
+       
         redirect_to players_path
+        
     end
     
     def show
@@ -33,6 +39,7 @@ end
     def edit
         if helpers.current_user.player_ids.include?(params[:id].to_i)
         @player=Player.find_by(id: params[:id])
+        @player_edit=Player.new
         else
             redirect_to root_path, alert: "You can't do that!"
         end
@@ -40,8 +47,21 @@ end
     end
     def update
         @player=Player.find_by(id: params[:id])
-        @player.update(player_params(params[:player]))
+        # @player_edit=Player.new(player_params(params[:player]))
+        # if @player_edit.valid?
+        if @player.update(player_params(params[:player]))
+
             redirect_to player_path(@player)
+        else
+           
+            render :edit
+        end
+    end
+
+    def destroy
+            Player.find(params[:id]).destroy
+            redirect_to players_path
+         
     end
 
 
