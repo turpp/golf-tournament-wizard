@@ -4,4 +4,5 @@ class User < ApplicationRecord
     accepts_nested_attributes_for :players
 
     has_secure_password
+    validates :name, :username, :password, presence: true
 end
