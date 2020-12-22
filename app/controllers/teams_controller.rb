@@ -27,16 +27,23 @@ class TeamsController < ApplicationController
     end
 
     def create
-
         if params[:checkin]=="true"
-
-            @team=Team.create(team_params(params[:team]))
-            params[:team][:player_ids].each do |p|
-                player=Player.find_by(id: p[:id][:id].to_i)
-                @team.players << player
+            @team=Team.new(team_params(params[:team]))
+            ids=params[:team][:player_ids].collect do |id|
+                id[:id][:id]
             end
-
-            redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+            if !ids.include?("")
+                @team=Team.create(team_params(params[:team]))
+                params[:team][:player_ids].each do |p|
+                    player=Player.find_by(id: p[:id][:id].to_i)
+                    @team.players << player
+                    end
+                
+                    redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+                    
+            else
+                redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+            end
         else
 
             params[:team].each do |t|
