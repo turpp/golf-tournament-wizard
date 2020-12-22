@@ -1,34 +1,114 @@
-<h1><%= @tournament.name %></h1>
-<br>
-<h4>Entry Fee: $<%= @tournament.entry_fee %></h4>
-<h4>Number of Rounds: <%= @tournament.number_of_rounds %>
-<h4>Number of Holes per Round: <%= @tournament.holes_per_round %></h4>
 
-<h4>Players</h4>
-<% @players.each do |p| %>
-<%= p.name %>
-<br>
-<% end %>
 
-<h4>Teams</h4>
-<h6>Click on Team to edit</h6>
+
+
+
+
+
+<body>
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
+    <div class="container">
+      <a class="navbar-brand" href="/">Tournament Wizard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments">All Tournaments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments/new">Create Tournament</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", logout_path, method: :post %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+      <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
+      <p class="lead">Entry Fee: <%= @tournament.entry_fee %></p>
+      <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
+      <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
+      <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}", class: "btn btn-primary" %>
+    <%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}", class: "btn btn-primary" %>
+    <br>
+    <br>
+    <%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>
+
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Page Features -->
+    <div class="row text-center">
 <% @tournament.teams.each do |team|%>
-<br>
-<%= link_to "Team #{@n+=1}", edit_team_path(team.id) %><br>
------------------------------------
-<br>
-<% team.players.each do |player| %>
-<%= player.name %>
-<br>
-<% end %>
-<% end %>
-<br>
-<br>
 
-<%= link_to "Edit Tournament Details", edit_tournament_path(@tournament) %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="https://lirp-cdn.multiscreensite.com/8e2fa297/dms3rep/multi/opt/Charity-Golf_Icon_Player_Green-640w.png" alt="trophy">
+          <div class="card-body">
+            <h4 class="card-title"><strong><u><%="Team #{@n+=1}"%></u></strong></h4>
+            <% team.players.each do |player| %>
+            <p class="card-text"><%= player.name%></p>
+            <% end %>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Edit Team", edit_team_path(team.id), class: "btn btn-primary" %>
+            <%= button_to "Delete Team", team_path(team), method: :delete %>   
+          </div>
+        </div>
+      </div>
+<% end %>
+
+    </div>
+    <!-- /.row -->
 <br>
 <br>
-<%= link_to "Add Golfers to Clubhouse", players_number_path %>
-<%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}" %>
-<%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}" %>
-<%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+

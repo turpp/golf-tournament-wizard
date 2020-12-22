@@ -31,4 +31,10 @@
   .bg-dark {
     background-color: #240115 !important;
   }
+
+  .jumbotron {
+    background-color: #226F54;
+    color: #fff;
+}
+
   
