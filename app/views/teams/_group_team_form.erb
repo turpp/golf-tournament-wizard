@@ -1,5 +1,9 @@
+<div class="card text-white bg-dark">
+  <div class="card-body">
 <%= hidden_field_tag 'team[][tournament_id]', "#{@tournament.id}" %>
 <%= label_tag :divison %>
 <%= text_field_tag "team[][divison]" %>
 <%= render 'select_players_form'%>
+</div>
+</div>
 

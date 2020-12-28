@@ -1,4 +1,11 @@
 <%= alert %>
+<body>
+<div class="card-deck">
+<div class="card" style="width: 50rem;">
+  <div class="card-body">
+<h1 class="display-2">Add Teams</h1>
+
+
 <%= form_tag '/teams', method: :post do %>
 
 <% @n.times do %>
@@ -8,3 +15,7 @@
 <br>
  <%= submit_tag "Create Teams" %>
  <% end %>
+ </div>
+ </div>
+ </div>
+</body>
