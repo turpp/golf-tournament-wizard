@@ -1,8 +1,56 @@
+<style>
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+
 <%= alert %>
-<h1>How many teams would you like to add?</h1>
+
+
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3 text-center">How many teams would you like to add?</h1>
+
+
+
+<main class="form-signin">
+
 <%= form_tag "/teams/number", method: :post do %>
-<%= label_tag "Number of Teams:" %>
-<%= number_field_tag :number %>
+<div class="form-group ">
+
+<%= number_field_tag :number, nil, class: "form-control", placeholder:"number"  %>
 <%= hidden_field_tag "tournament_id", params[:tournament_id] %>
 <%= submit_tag "Submit" %>
+</div>
+</main>
+
 <% end %>
+
+    </header>
