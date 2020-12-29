@@ -14,6 +14,7 @@ class HolesController < ApplicationController
                 return redirect_to "/holes/round_entry/teams/#{team.id}", alert: "Please enter a score for each hole before submiting."
             end
         end
+
         if helpers.current_user.tournament_ids.include?(team.tournament_id)
             round=Round.create(round_params)
             if !round.blank?
@@ -46,6 +47,7 @@ class HolesController < ApplicationController
             round.holes << @hole
         end
     end
+
 
 
 end
