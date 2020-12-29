@@ -1,6 +1,9 @@
+<div class='container'>
+<h1 class="display-2">Edit Team</h1>
+
+<div class="card text-white bg-dark">
+  <div class="card-body">
 <%= form_for @team do |f| %>
-<%= f.label :final_score %>
-<%= f.number_field :final_score %>
 <%= f.label :divison %>
 <%= f.text_field :divison %>
 <%= f.hidden_field :tournament_id, value: @team.tournament_id %>
@@ -17,4 +20,8 @@
 <br>
  <%= f.submit %>
  <% end %>
+ 
 <%= button_to "Delete Team", team_path(@team), method: :delete %>
+</div>
+ </div>
+</div>
