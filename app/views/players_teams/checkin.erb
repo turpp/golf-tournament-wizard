@@ -1,22 +1,81 @@
-<h1><%= @tournament.name %></h1>
-<h4>Entry Fee:<%= @tournament.entry_fee %>
-<h4>Number of Golfers on a Team:<%= @tournament.players_on_team %></h4>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
+    <div class="container">
+      <a class="navbar-brand" href="/">Tournament Wizard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments">All Tournaments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tournaments/new">Create Tournament</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", logout_path, method: :post %>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+      <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
+      <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
+      <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
+      <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
+
+    </header>
+
+
+
+
 <h2>Teams</h3>
+<table class="table">
+  <thead class="thead-dark">
+   <tr>
+      <th scope="col">#</th>
+      <th scope="col">Golfer</th>
+      <th scope="col">Paid</th>
+      <th scope="col">Mulligan</th>
+      <th scope="col">Save</th>
+    </tr>
+     </thead>
 <% @teams.each do |team| %>
-<%= "Team #{@n+=1}" %>
+ <tr>
+      <th scope="row"><%= @n+=1 %></th>
 <% team.players_teams.each do |pt| %>
 <%= form_for pt do |f| %>
-<%= f.label "#{pt.player.name}" %>
-<%= f.label :paid %>
-<%= f.check_box :paid %>
-<%= f.label :mulligan %>
-<%= f.check_box :mulligan %>
-<%= f.submit "Check in" %>
+<td><%= f.label "#{pt.player.name}" %></td>
+<td><%= f.check_box :paid %></td>
+<td><%= f.check_box :mulligan %></td>
+<td><%= f.submit "Check in" %></td>
 <% end %>
 <% end %>
 <% end %>
+    </tr>
+    </table>
+    <%= link_to "Go to Score Posting", "/tournaments/#{@tournament.id}/posting", class: "w-100 btn btn-primary" %>
+<br>
+<br>
+<br>
 
-<h3>Add Team</h3>
+
+<div class="card">
+<div class="card-body">
+<h3 class="card-title">Add Team</h3>
 <%= form_for @team do |f| %>
 <%= f.label :divison %>
 <%= f.text_field :divison %>
@@ -30,7 +89,11 @@ Golfer:
 <%= f.submit  %>
 <% end %>
 <br>
+</div>
+
+<div class='card-footer'>
 <h6>If golfers are not in drop down for team add them to clubhouse</h6>
 <%= link_to "Add Golfers to Clubhouse", players_number_path %>
-<%= link_to "Go to Score Posting", "/tournaments/#{@tournament.id}/posting" %>
+</div>
+</div>
 

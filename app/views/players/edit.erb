@@ -1,3 +1,4 @@
+
 <% if @player.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -11,8 +12,15 @@
     </ul>
   </div>
 <% end %> 
+<body>
+<div class="card-deck">
+<div class="card" style="width: 50rem;">
+  <div class="card-body">
+<h1 class="display-2">Edit Golfer</h1>
 
-<h1>Edit Golfers</h1>
+ <div class="card text-white bg-dark">
+  <div class="card-body">
+
 <%= form_for @player do |f| %>
 <%= f.label :name %> 
 <%= f.text_field :name %> 
@@ -20,4 +28,10 @@
 <%= f.text_field :handicap  %>
 <%= f.hidden_field :user_id, value: session[:user_id] %>
 <%= f.submit %>
+</div>
+</div>
 <% end %>
+ </div>
+ </div>
+ </div>
+</body>

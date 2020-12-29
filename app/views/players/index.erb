@@ -1,9 +1,28 @@
-<h1>All Players</h1>
+      <div class="container">
+
+    <header class="jumbotron my-4">
+      <h1 class="display-3">All players!</h1>
+    </header>
+
+    <div class="row text-center">
+
 <% @players.each do |p| %>
-<%= link_to p.name, player_path(p) %>
-<%= p.handicap %>
-<br>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="card-title"><strong><u><%= p.name %></u></strong></h4>
+            <p class="card-text">handicap: <%= p.handicap %></p>
+</div>
+          <div class="card-footer">
+            <%= link_to "Details", player_path(p), class: "btn btn-primary" %>
+            </div>
+                    </div>
+      </div>
+
 <% end %>
+</div>
+
+<%= link_to "Add Golfers", players_number_path, class: "w-100 btn btn-primary"%>
+</div>
 <br>
 <br>
-<%= link_to "Add Golfers", players_number_path %>

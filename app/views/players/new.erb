@@ -12,10 +12,14 @@
   </div>
 <% end %> 
 
+<body>
+<div class="card-deck">
+<div class="card" style="width: 50rem;">
+  <div class="card-body">
+<h1 class="display-2">Add Golfers</h1>
 
 
 
-<h1>Add Golfers</h1>
 <%= form_tag '/players', method: :post do %>
 <% @n.times do%>
 <%= render 'group_player_form' %>
@@ -24,5 +28,11 @@
 <%= hidden_field_tag :number, @n %>
 <%= submit_tag "submit" %>
 <% end %>
+ </div>
+ </div>
+ </div>
+</body>
+
+
 
 
