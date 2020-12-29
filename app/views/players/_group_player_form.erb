@@ -1,14 +1,11 @@
- <div class="card text-white bg-dark">
+<div class="card text-white bg-dark">
   <div class="card-body">
-
- <div class="field<%= ' field_with_errors' if @player.errors[:name].any? %>">
- 
-<%= label_tag "name", "Name" %>
-<%= text_field_tag "player[][name]",@player.name %>
+    <div class="field<%= ' field_with_errors' if @player.errors[:name].any? %>">
+      <%= label_tag "name", "Name" %>
+      <%= text_field_tag "player[][name]",@player.name %>
+    </div>
+    Handicap:<%= text_field_tag "player[][handicap]", @player.handicap %>
+    <%= hidden_field_tag "player[][user_id]", session[:user_id] %>
   </div>
-Handicap:<%= text_field_tag "player[][handicap]", @player.handicap %>
-<%= hidden_field_tag "player[][user_id]", session[:user_id] %>
-
-</div>
 </div>
 

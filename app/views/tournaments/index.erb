@@ -1,15 +1,12 @@
 <style>
-.jumbotron {
-    background-color: #226F54;
-    color: #fff;
-}
+  .jumbotron {
+      background-color: #226F54;
+      color: #fff;
+  }
 </style>
 <% if !@tournaments.empty? %>
 
 <body>
-
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
     <div class="container">
       <a class="navbar-brand" href="/">Tournament Wizard</a>
@@ -40,32 +37,16 @@
       </div>
     </div>
   </nav>
-
     <!-- Page Content -->
   <div class="container">
-
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">All Tournaments!</h1>
       <p class="lead">Below is a list of all tournaments. To edit or add teams to the tournament you must go to the detail section.</p>
     </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Page Features -->
     <div class="row text-center">
       <% @tournaments.each do |t| %>
-
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
           <img class="card-img-top" src="data:image/png;base64,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" alt="trophy">
@@ -75,14 +56,13 @@
             <p class="card-text">Entry Fee: $<%= t.entry_fee %>
             <p class="card-text">Teams Signed up: <%= t.teams.count %>
           </div>
-          <div class="card-footer">
-            <%= link_to "Details", tournament_path(t), class: "btn btn-primary" %>
-            <%= link_to "Start Checkin", "/players_teams/checkin/#{t.id}", class: "btn btn-primary" %>
-          </div>
-        </div>
+        <div class="card-footer">
+        <%= link_to "Details", tournament_path(t), class: "btn btn-primary" %>
+        <%= link_to "Start Checkin", "/players_teams/checkin/#{t.id}", class: "btn btn-primary" %>
       </div>
+    </div>
+  </div>
 <% end %>
-
     </div>
     <!-- /.row -->
 <%= link_to "Add Golfers to Clubhouse", players_number_path, class: "btn btn-primary" %>
@@ -91,7 +71,6 @@
 <br>
   </div>
   <!-- /.container -->
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -99,18 +78,11 @@
     </div>
     <!-- /.container -->
   </footer>
-
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
-
-
 <% else%>
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
     <div class="container">
       <a class="navbar-brand" href="/">Tournament Wizard</a>
@@ -141,24 +113,15 @@
       </div>
     </div>
   </nav>
-
     <!-- Page Content -->
   <div class="container">
-
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">FORE! It looks like you do not have any tournaments yet!</h1>
         <%= link_to "Add Golfers to Clubhouse", players_number_path, class: "btn btn-primary" %>
         <%= link_to "Add New Tournament", new_tournament_path, class: "btn btn-primary" %>
     </header>
-
-</div>
-
-
-
-
-
-
+  </div>
 <% end %>
 
 

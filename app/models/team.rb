@@ -3,12 +3,9 @@ class Team < ApplicationRecord
   has_many :players_teams
   has_many :players, through: :players_teams
   has_many :rounds
-
   has_many :holes, through: :rounds
-  
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :players_teams
-
 
   def total_score
     total=[]

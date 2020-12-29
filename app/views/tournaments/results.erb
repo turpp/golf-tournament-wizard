@@ -1,70 +1,65 @@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
-    <div class="container">
-      <a class="navbar-brand" href="/">Tournament Wizard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tournaments">All Tournaments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tournaments/new">Create Tournament</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
-          </li>
-          <li class="nav-item">
-            <%= button_to "Logout", logout_path, method: :post %>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
   <div class="container">
+    <a class="navbar-brand" href="/">Tournament Wizard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tournaments">All Tournaments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tournaments/new">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
+        </li>
+        <li class="nav-item">
+          <%= button_to "Logout", logout_path, method: :post %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-    </header>
+<div class="container">
+  <!-- Jumbotron Header -->
+  <header class="jumbotron my-4">
+    <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+  </header>
 
+  <h3>Scores:</h3>
+  <% @teams.each do |team, final_score| %>
+  <h3><u> <%= "Final Score: #{team.total_score}" %></u></h3>
 
-<h3>Scores:</h3>
-<% @teams.each do |team, final_score| %>
-<h3><u> <%= "Final Score: #{team.total_score}" %></u></h3>
+  <% team.players.each do |player| %>
+  <p class='h4'><%= player.name %></p>
+  <% end %>
 
-<% team.players.each do |player| %>
-<p class='h4'><%= player.name %></p>
-
-<% end %>
-<% team.rounds.each do |round| %>
-<br>
-<table class="table table-bordered">
-
-<u><%= "Round #{@r+=1}" %></u><br>
-<tr>
-<% round.holes.each do |hole| %>
-<th><%= "Hole #{@h+=1}" %></th>
-<% end %>
-<th>Round Total</th>
-</tr>
-
-<tr>
-<% round.holes.each do |hole| %>
-    <td><%= "#{hole.score}" %></td>
-    <% end %>
-    <td><%= "#{round.round_total}" %></td>
-
+  <% team.rounds.each do |round| %>
+  <br>
+  <table class="table table-bordered">
+    <u><%= "Round #{@r+=1}" %></u><br>
+    <tr>
+      <% round.holes.each do |hole| %>
+      <th><%= "Hole #{@h+=1}" %></th>
+      <% end %>
+      <th>Round Total</th>
     </tr>
-    </table>
-<% @h=0 %>
-<% end %>
-<% @r=0%>
-<br>
-<% end %>
+    <tr>
+      <% round.holes.each do |hole| %>
+      <td><%= "#{hole.score}" %></td>
+      <% end %>
+      <td><%= "#{round.round_total}" %></td>
+    </tr>
+  </table>
+  <% @h=0 %>
+  <% end %>
+  <% @r=0%>
+  <br>
+  <% end %>
+</div>

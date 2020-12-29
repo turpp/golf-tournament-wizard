@@ -1,88 +1,77 @@
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
-    <div class="container">
-      <a class="navbar-brand" href="/">Tournament Wizard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tournaments">All Tournaments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tournaments/new">Create Tournament</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
-          </li>
-          <li class="nav-item">
-            <%= button_to "Logout", logout_path, method: :post %>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #240115;">
   <div class="container">
+    <a class="navbar-brand" href="/">Tournament Wizard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= user_path(session[:user_id].to_i) %>">Clubhouse</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tournaments">All Tournaments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tournaments/new">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= players_number_path %>">Add Golfers</a>
+        </li>
+        <li class="nav-item">
+          <%= button_to "Logout", logout_path, method: :post %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-      <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
-      <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
-      <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
-      <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
+<div class="container">
+  <!-- Jumbotron Header -->
+  <header class="jumbotron my-4">
+    <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+    <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
+    <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
+    <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
+    <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
+  </header>
 
-    </header>
+  <h4>Teams</h4>
+  <% @tournament.teams.each do |team|%>
+  <br>
+  <% @r=0%>
+  <h3><u><%= "Team #{@n+=1}" %></u>
 
+  <% team.players.each do |player| %>
+  <p class='lead'><%= player.name %></p>
+  <% end %>
+  </h3>
 
-
-<h4>Teams</h4>
-<% @tournament.teams.each do |team|%>
-<br>
-<% @r=0%>
-<h3><u><%= "Team #{@n+=1}" %></u>
-
-<% team.players.each do |player| %>
-<p class='lead'><%= player.name %></p>
-
-<% end %>
-</h3>
-<% team.rounds.each do |round| %>
-<% @h=0%>
-
-<table class="table table-bordered">
-<u><%= "Round #{@r+=1}" %></u><br>
-
-<tr>
-<% round.holes.each do |hole| %>
-<th><%= "Hole #{@h+=1}" %></th>
-<% end %>
-<th>Round Total</th>
-</tr>
-<tr>
-<% round.holes.each do |hole| %>
-<td><%= "#{hole.score}" %></td>
-<% end %>
-<td><%= "#{round.round_total}" %></td>
-
-<% end %>
-</tr>
-</table>
-<%= link_to "Enter Team's Score", "/holes/round_entry/teams/#{team.id}", class: "btn btn-primary"%>
-<br>
-
-<p class=h3><%= "#{'Tournament Total:' if team.total_score !=0} #{ team.total_score if team.total_score != 0}" %></p>
-
-<% end %>
-<br>
-<br>
-
-<br>
-<br>
-<%= link_to "Tournament Results", "/tournaments/#{@tournament.id}/results", class: "w-100 btn btn-primary" %>
-
+  <% team.rounds.each do |round| %>
+  <% @h=0%>
+  <table class="table table-bordered">
+    <u><%= "Round #{@r+=1}" %></u><br>
+    <tr>
+      <% round.holes.each do |hole| %>
+      <th><%= "Hole #{@h+=1}" %></th>
+      <% end %>
+      <th>Round Total</th>
+    </tr>
+    <tr>
+      <% round.holes.each do |hole| %>
+      <td><%= "#{hole.score}" %></td>
+      <% end %>
+      <td><%= "#{round.round_total}" %></td>
+      <% end %>
+    </tr>
+  </table>
+  <%= link_to "Enter Team's Score", "/holes/round_entry/teams/#{team.id}", class: "btn btn-primary"%>
+  <br>
+  <p class=h3><%= "#{'Tournament Total:' if team.total_score !=0} #{ team.total_score if team.total_score != 0}" %></p>
+  <% end %>
+  <br>
+  <br>
+  <br>
+  <br>
+  <%= link_to "Tournament Results", "/tournaments/#{@tournament.id}/results", class: "w-100 btn btn-primary" %>
+</div>

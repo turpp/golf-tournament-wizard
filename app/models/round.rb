@@ -4,7 +4,7 @@ class Round < ApplicationRecord
 
 
   def round_total
-  hole_scores=[]
+    hole_scores=[]
     self.holes.each do |hole|
       hole_scores << hole.score
     end

@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   root "sessions#home"
   get "/players/new/:number", to: "players#new"
   post "/players/number", to: 'players#times'
-
   get '/teams/tournament/:id', to: 'teams#tournament'
   get '/teams/new/:number/:tournament_id', to: 'teams#new'
 end

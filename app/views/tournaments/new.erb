@@ -1,64 +1,60 @@
 <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
 
-      html,
-body {
+  html,body {
   height: 100%;
-}
+  }
 
-body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
+  body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="username"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-    </style>
-
-
-
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="username"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+</style>
 
 <% if @tournament.errors.any? %>
   <div id="error_explanation">
@@ -66,7 +62,6 @@ body {
       <%= pluralize(@tournament.errors.count, "error") %>
       prohibited this tournament from being saved:
     </h2>
-
     <ul>
     <% @tournament.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -75,70 +70,50 @@ body {
   </div>
 <% end %> 
 
-
 <main class="form-signin">
-
-<%= form_for @tournament do |f| %>
-<legend><center><h2><b>Create Tournament</b></h2></center></legend><br>
-
-
-<div class="form-group ">
-  <span class="input-group-addon"><i class="fas fa-golf-ball"></i></i></span>
-
-<%= label_tag :name, nil, class: "visually-hidden"  %>
-<%= f.text_field :name, class: "form-control", placeholder:"Name" %>
-    </div>
+  <%= form_for @tournament do |f| %>
+  <legend><center><h2><b>Create Tournament</b></h2></center></legend><br>
+  <div class="form-group ">
+    <span class="input-group-addon"><i class="fas fa-golf-ball"></i></i></span>
+    <%= label_tag :name, nil, class: "visually-hidden"  %>
+    <%= f.text_field :name, class: "form-control", placeholder:"Name" %>
   </div>
-</div>
+    
 
 
-<div class="form-group">
-  <span class="input-group-addon"><i class="fas fa-calendar-day"></i></span>
+  <div class="form-group">
+    <span class="input-group-addon"><i class="fas fa-calendar-day"></i></span>
+    <%= label_tag :date, nil, class: "visually-hidden"  %>
+    <%= f.date_field :date, class: "form-control", placeholder: "Date" %>
+  </div>
 
-<%= label_tag :date, nil, class: "visually-hidden"  %>
-<%= f.date_field :date, class: "form-control", placeholder: "Date" %>
-</div>
+  <div class="form-group">
+    <span class="input-group-addon"><i class="fas fa-money-bill-wave"></i></span>
+    <%= label_tag :entry_fee, nil, class: "visually-hidden"  %>
+    <%= f.number_field :entry_fee, class: "form-control", placeholder: "Fee" %>
+  </div>
 
+  <div class="form-group">
+    <span class="input-group-addon"><i class="fas fa-users"></i></span>
+    <%= label_tag :players_on_team, nil, class: "visually-hidden"  %>
+    <%= f.number_field :players_on_team, class: "form-control", placeholder: "Number of Players" %>
+  </div>
 
+  <div class="form-group">
+    <span class="input-group-addon"><i class="fas fa-flag"></i></span>
+    <%= label_tag :number_of_rounds, nil, class: "visually-hidden"  %>
+    <%= f.number_field :number_of_rounds, class: "form-control", placeholder: "Number of Rounds" %>
+  </div>
 
-<div class="form-group">
-  <span class="input-group-addon"><i class="fas fa-money-bill-wave"></i></span>
+  <div class="form-group">
+    <span class="input-group-addon"><i class="fas fa-ring"></i></span>
+    <%= label_tag :holes_per_round, nil, class: "visually-hidden"  %>
+    <%= f.number_field :holes_per_round, class: "form-control", placeholder: "Holes per Round" %>
+  </div>
 
-<%= label_tag :entry_fee, nil, class: "visually-hidden"  %>
-<%= f.number_field :entry_fee, class: "form-control", placeholder: "Fee" %>
-</div>
-
-
-
-<div class="form-group">
-  <span class="input-group-addon"><i class="fas fa-users"></i></span>
-
-<%= label_tag :players_on_team, nil, class: "visually-hidden"  %>
-<%= f.number_field :players_on_team, class: "form-control", placeholder: "Number of Players" %>
-</div>
-
-
-
-<div class="form-group">
-  <span class="input-group-addon"><i class="fas fa-flag"></i></span>
-
-<%= label_tag :number_of_rounds, nil, class: "visually-hidden"  %>
-<%= f.number_field :number_of_rounds, class: "form-control", placeholder: "Number of Rounds" %>
-</div>
-
-
-
-<div class="form-group">
-  <span class="input-group-addon"><i class="fas fa-ring"></i></span>
-
-<%= label_tag :holes_per_round, nil, class: "visually-hidden"  %>
-<%= f.number_field :holes_per_round, class: "form-control", placeholder: "Holes per Round" %>
-</div>
-
-
-<%= f.hidden_field :user_id, value: session[:user_id] %>
-<%= f.submit %>
-<% end %>
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
+  <%= f.submit %>
+  <% end %>
 </main>
 
 

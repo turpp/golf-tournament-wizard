@@ -1,36 +1,35 @@
 <style>
-@media (min-width: 34em) {
-    .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-    }
-}
+  @media (min-width: 34em) {
+      .card-columns {
+          -webkit-column-count: 2;
+          -moz-column-count: 2;
+          column-count: 2;
+      }
+  }
 
-@media (min-width: 48em) {
-    .card-columns {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3;
-    }
-}
+  @media (min-width: 48em) {
+      .card-columns {
+          -webkit-column-count: 3;
+          -moz-column-count: 3;
+          column-count: 3;
+      }
+  }
 
-@media (min-width: 62em) {
-    .card-columns {
-        -webkit-column-count: 4;
-        -moz-column-count: 4;
-        column-count: 4;
-    }
-}
+  @media (min-width: 62em) {
+      .card-columns {
+          -webkit-column-count: 4;
+          -moz-column-count: 4;
+          column-count: 4;
+      }
+  }
 
-@media (min-width: 75em) {
-    .card-columns {
-        -webkit-column-count: 5;
-        -moz-column-count: 5;
-        column-count: 5;
-    }
-}
-
+  @media (min-width: 75em) {
+      .card-columns {
+          -webkit-column-count: 5;
+          -moz-column-count: 5;
+          column-count: 5;
+      }
+  }
 </style>
 
 <% if @tournament.errors.any? %>
@@ -39,69 +38,67 @@
       <%= pluralize(@tournament.errors.count, "error") %>
       prohibited this tournament from being saved:
     </h2>
-
     <ul>
     <% @tournament.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
-<% end %> 
+<% end %>
+
 <div class="container">
-<header class="jumbotron my-4">
-  <h1 class="display-3 text-center"><%= "Edit #{@tournament.name} Tournament" %></h1>
-</header>
+  <header class="jumbotron my-4">
+    <h1 class="display-3 text-center"><%= "Edit #{@tournament.name} Tournament" %></h1>
+  </header>
   <div class="card">
     <div class="card-body">
-
-<%= form_for @tournament do |f| %>
-      <p class="card-text">
-  <p class="lead">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-    <%= f.label :entry_fee %>
-    <%= f.number_field :entry_fee %>
-
-    <%= f.label :players_on_team %>
-    <%= f.number_field :players_on_team %>
-    <%= f.label :number_of_rounds %>
-    <%= f.number_field :number_of_rounds %>
-    <%= f.label :holes_per_round %>
-    <%= f.number_field :holes_per_round %>
-    <%= f.hidden_field :user_id, value: session[:user_id] %>
-  </p>
-  </p>
-  
-<br>
-<br>
-<br>
-<br>
-<body>
-<div class="card-columns">
-  <%= f.fields_for :teams do |t| %>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title"><strong><u><%= t.label "Team" %></u></strong></h3>
-      <%= t.fields_for :players_teams do |pt| %>
+      <%= form_for @tournament do |f| %>
       <p class="card-text">
         <p class="lead">
-        <%= pt.label "Golfer:" %>
-        <%= pt.collection_select :player_id, @players, :id, :name %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+        <%= f.label :date %>
+        <%= f.date_field :date %>
+        <%= f.label :entry_fee %>
+        <%= f.number_field :entry_fee %>
+        <%= f.label :players_on_team %>
+        <%= f.number_field :players_on_team %>
+        <%= f.label :number_of_rounds %>
+        <%= f.number_field :number_of_rounds %>
+        <%= f.label :holes_per_round %>
+        <%= f.number_field :holes_per_round %>
+        <%= f.hidden_field :user_id, value: session[:user_id] %>
         </p>
       </p>
+  <br>
+  <br>
+  <br>
+  <br>
+    <div class="card-columns">
+      <%= f.fields_for :teams do |t| %>
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title"><strong><u><%= t.label "Team" %></u></strong></h3>
+          <%= t.fields_for :players_teams do |pt| %>
+          <p class="card-text">
+            <p class="lead">
+            <%= pt.label "Golfer:" %>
+            <%= pt.collection_select :player_id, @players, :id, :name %>
+            </p>
+          </p>
+          <% end %>
+        </div>
+      </div>
       <% end %>
     </div>
-  </div>
+  <br>
+    <%= submit_tag "Update", class: "w-100 btn btn-lg btn-primary" %>
   <% end %>
-</div>
-<br>
-<%= submit_tag "Update", class: "w-100 btn btn-lg btn-primary" %>
-<% end %>
-<br>
-<br>
-<%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete, class: "btn btn-danger" %>
+  <br>
+  <br>
+  <%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>
 
 
