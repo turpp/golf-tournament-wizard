@@ -45,6 +45,9 @@ class TournamentsController < ApplicationController
 
         if Tournament.new(tournament_params).valid?
         @tournament.teams.each do |t|
+            t.rounds.each do |round|
+                round.delete
+            end
             PlayersTeam.where(team_id: t.id).each do |pt|
                 pt.delete
             end

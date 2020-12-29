@@ -50,8 +50,12 @@
       <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
       <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}", class: "btn btn-primary" %>
     <%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}", class: "btn btn-primary" %>
+            <%= link_to "Edit Tournament", edit_tournament_path(@tournament),class: "btn btn-primary"   %>
+
     <br>
+    
     <br>
+
     <%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>
 
     </header>
@@ -78,7 +82,7 @@
           <div class="card-body">
             <h4 class="card-title"><strong><u><%="Team #{@n+=1}"%></u></strong></h4>
             <% team.players.each do |player| %>
-            <p class="card-text"><%= player.name%></p>
+            <p class="card-group"><%= player.name%></p>
             <% end %>
           </div>
           <div class="card-footer">
