@@ -47,12 +47,15 @@
     </ul>
   </div>
 <% end %> 
-
+<div class="container">
 <header class="jumbotron my-4">
   <h1 class="display-3 text-center"><%= "Edit #{@tournament.name} Tournament" %></h1>
+</header>
+  <div class="card">
+    <div class="card-body">
 
-
-  <%= form_for @tournament do |f| %>
+<%= form_for @tournament do |f| %>
+      <p class="card-text">
   <p class="lead">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -60,9 +63,7 @@
     <%= f.date_field :date %>
     <%= f.label :entry_fee %>
     <%= f.number_field :entry_fee %>
-  </p>
 
-  <p class="lead">
     <%= f.label :players_on_team %>
     <%= f.number_field :players_on_team %>
     <%= f.label :number_of_rounds %>
@@ -71,12 +72,13 @@
     <%= f.number_field :holes_per_round %>
     <%= f.hidden_field :user_id, value: session[:user_id] %>
   </p>
-</header>
+  </p>
+  
 <br>
 <br>
 <br>
 <br>
-<main>
+<body>
 <div class="card-columns">
   <%= f.fields_for :teams do |t| %>
   <div class="card">
@@ -95,12 +97,12 @@
   <% end %>
 </div>
 <br>
-<%= submit_tag "Update" %>
+<%= submit_tag "Update", class: "w-100 btn btn-lg btn-primary" %>
 <% end %>
 <br>
 <br>
-<%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete %>
-</main>
+<%= button_to "Delete Tournament", tournament_path(@tournament), method: :delete, class: "btn btn-danger" %>
+</div>
 
 
 
