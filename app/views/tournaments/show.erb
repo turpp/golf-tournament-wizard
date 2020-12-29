@@ -51,6 +51,7 @@
       <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}", class: "btn btn-primary" %>
     <%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}", class: "btn btn-primary" %>
             <%= link_to "Edit Tournament", edit_tournament_path(@tournament),class: "btn btn-primary"   %>
+            <%= link_to "Results", "/tournaments/#{@tournament.id}/results",class: "btn btn-primary"   %>
 
     <br>
     

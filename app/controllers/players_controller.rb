@@ -8,8 +8,13 @@ def number
 end
 
 def times
+
     @n=params[:number].to_i
+    if @n > 0
     redirect_to "/players/new/#{@n}"
+    else
+        redirect_to "/players/number", alert: "Number field can't be blank and must be greater than 1"
+    end
 end
     def new
          @n=params[:number].to_i

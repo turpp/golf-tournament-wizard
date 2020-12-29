@@ -54,9 +54,10 @@
     </tr>
      </thead>
 <% @teams.each do |team| %>
- <tr>
-      <th scope="row"><%= @n+=1 %></th>
+ <% @n+=1 %>
 <% team.players_teams.each do |pt| %>
+<tr>
+      <th scope="row"><%= @n %></th>
 <%= form_for pt do |f| %>
 <td><%= f.label "#{pt.player.name}" %></td>
 <td><%= f.check_box :paid %></td>

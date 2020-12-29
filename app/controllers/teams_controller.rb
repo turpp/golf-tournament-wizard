@@ -46,17 +46,19 @@ class TeamsController < ApplicationController
             end
         else
            
-
+           
             params[:team].each do |t|
+                
                 @team=Team.new(team_params(t))
                 t[:player_ids].each do |p|
+                    byebug
                     if player=Player.find_by(id: p[:id][:id].to_i)
                     @team.players << player
+                    @team.save
                     else
                        return redirect_to "/teams/new/#{params[:team].count}/#{@team.tournament_id}", alert: "Must select Golfer from the drop down." 
                     end
                 end
-                @team.save
             end
             redirect_to tournament_path(@team.tournament_id)
         end

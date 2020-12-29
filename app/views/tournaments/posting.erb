@@ -49,8 +49,9 @@
 
 <% team.players.each do |player| %>
 <p class='lead'><%= player.name %></p>
-</h3>
+
 <% end %>
+</h3>
 <% team.rounds.each do |round| %>
 <% @h=0%>
 
@@ -83,5 +84,5 @@
 
 <br>
 <br>
-
+<%= link_to "Tournament Results", "/tournaments/#{@tournament.id}/results", class: "w-100 btn btn-primary" %>
 
