@@ -67,7 +67,7 @@
 
     <%= form_tag "/teams/#{@team.id}/holes", method: :post do %>
 
-    <% @team.tournament.holes_per_round.times do%>
+    <% @team.number_of_holes.times do%>
     <%= render 'group_hole_form' %>
     <br>
     <% end %>

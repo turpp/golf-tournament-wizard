@@ -20,4 +20,8 @@ class Team < ApplicationRecord
     self.save
     self.final_score
   end
+
+  def number_of_holes
+    self.tournament.holes_per_round
+  end
 end
