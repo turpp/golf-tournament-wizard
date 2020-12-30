@@ -41,7 +41,8 @@ class TeamsController < ApplicationController
                 # end
                 # redirect_to "/players_teams/checkin/#{@team.tournament_id}"
             else
-                redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+                # redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+                redirect_to "/tournaments/#{@team.tournament_id}/players_teams/checkin"
             end
         else
             # params[:team].each do |t|
@@ -82,9 +83,10 @@ class TeamsController < ApplicationController
         if params[:number].to_i > 0
             # tournament_id=params[:tournament_id]
             # n=params[:number].to_i
-            redirect_to "/teams/new/#{params[:number]}/#{params[:tournament_id]}"
+            # redirect_to "/teams/new/#{params[:number]}/#{params[:tournament_id]}"
+            redirect_to "/tournaments/#{params[:tournament_id]}/teams/new/#{params[:number]}"
         else
-            redirect_to "/teams/number/#{params[:tournament_id]}", alert: "You must enter a number greater than 0."
+            redirect_to "/tournaments/#{params[:tournament_id]}/teams/number", alert: "You must enter a number greater than 0."
         end
     end
 
@@ -145,7 +147,8 @@ class TeamsController < ApplicationController
             player=Player.find_by(id: p[:id][:id].to_i)
             @team.players << player
         end
-        redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+        # redirect_to "/players_teams/checkin/#{@team.tournament_id}"
+        redirect_to "/tournaments/#{@team.tournament}/players_teams/checkin"
     end
 
     def create_multiple_teams

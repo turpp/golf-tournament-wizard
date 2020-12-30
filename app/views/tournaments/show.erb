@@ -37,8 +37,8 @@
       <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
       <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
       <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
-      <%= link_to "Add Teams to Tournament", "/teams/number/#{@tournament.id}", class: "btn btn-primary" %>
-      <%= link_to "Start Check in", "/players_teams/checkin/#{@tournament.id}", class: "btn btn-primary" %>
+      <%= link_to "Add Teams to Tournament", "/tournaments/#{@tournament.id}/teams/number", class: "btn btn-primary" %>
+      <%= link_to "Start Check in", "/tournaments/#{@tournament.id}/players_teams/checkin", class: "btn btn-primary" %>
       <%= link_to "Edit Tournament", edit_tournament_path(@tournament),class: "btn btn-primary"   %>
       <%= link_to "Results", "/tournaments/#{@tournament.id}/results",class: "btn btn-primary"   %>
       <br>

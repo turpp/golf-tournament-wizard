@@ -11,7 +11,7 @@ class HolesController < ApplicationController
         team=Team.find_by(id: params[:round][:team_id].to_i)
         params[:hole].each do |hole|
             if hole[:score].blank?
-                return redirect_to "/holes/round_entry/teams/#{team.id}", alert: "Please enter a score for each hole before submiting."
+                return redirect_to "/teams/#{team.id}/holes/round_entry", alert: "Please enter a score for each hole before submiting."
             end
         end
 

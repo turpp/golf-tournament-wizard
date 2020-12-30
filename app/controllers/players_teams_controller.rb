@@ -18,7 +18,8 @@ class PlayersTeamsController < ApplicationController
         pt=PlayersTeam.find_by(id: params[:id])
         pt.update(players_team_params)
         tournament=pt.team.tournament.id
-        redirect_to "/players_teams/checkin/#{tournament}"
+        redirect_to "/tournaments/#{tournament}/players_teams/checkin"
+        # redirect_to "/players_teams/checkin/#{tournament}"
     end
 
     

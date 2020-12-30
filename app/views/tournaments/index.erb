@@ -58,7 +58,7 @@
           </div>
         <div class="card-footer">
         <%= link_to "Details", tournament_path(t), class: "btn btn-primary" %>
-        <%= link_to "Start Checkin", "/players_teams/checkin/#{t.id}", class: "btn btn-primary" %>
+        <%= link_to "Start Checkin", "/tournaments/#{t.id}/players_teams/checkin", class: "btn btn-primary" %>
       </div>
     </div>
   </div>
