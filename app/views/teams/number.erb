@@ -37,10 +37,9 @@
   <header class="jumbotron my-4">
     <h1 class="display-3 text-center">How many teams would you like to add?</h1>
     <main class="form-signin">
-      <%= form_tag "/teams/number", method: :post do %>
+      <%= form_tag "/tournaments/#{params[:tournament_id]}/teams/number", method: :post do %>
       <div class="form-group ">
         <%= number_field_tag :number, nil, class: "form-control", placeholder:"number"  %>
-        <%= hidden_field_tag "tournament_id", params[:tournament_id] %>
         <%= submit_tag "Submit" %>
       </div>
     </main>
