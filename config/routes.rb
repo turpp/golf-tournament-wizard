@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post '/teams/number', to: 'teams#times' 
   #-----------------
   #nested= /teams/:team_id/holes/round_entry
-  get '/holes/round_entry/teams/:team_id', to: 'holes#round_entry'
+  # get '/holes/round_entry/teams/:team_id', to: 'holes#round_entry'
   #-------------------
 
   get '/tournaments/:touranment_id/posting', to: "tournaments#posting"
@@ -41,9 +41,10 @@ Rails.application.routes.draw do
   resources :teams, except: :index  do #hole round entry
     # get '/holes/round_entry/teams/:team_id', to: 'holes#round_entry'
     get '/holes/round_entry', to: 'holes#round_entry'
+    resources :holes, only: :create
   end
   resources :players_teams, only: :update
-  resources :holes, only: :create
+  # resources :holes, only: :create
   root "sessions#home"
 
 

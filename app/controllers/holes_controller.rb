@@ -8,7 +8,8 @@ class HolesController < ApplicationController
     end
 
     def create
-        team=Team.find_by(id: params[:round][:team_id].to_i)
+        # team=Team.find_by(id: params[:round][:team_id].to_i)
+        team=Team.find_by(id: params[:team_id].to_i)
         params[:hole].each do |hole|
             if hole[:score].blank?
                 return redirect_to "/teams/#{team.id}/holes/round_entry", alert: "Please enter a score for each hole before submiting."
@@ -34,7 +35,8 @@ class HolesController < ApplicationController
     end
 
     def round_params
-       params.require(:round).permit(:team_id)
+    #    params.require(:round).permit(:team_id)
+       params.permit(:team_id)
     end
 
     def require_login
