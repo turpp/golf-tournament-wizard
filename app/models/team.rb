@@ -7,6 +7,10 @@ class Team < ApplicationRecord
   accepts_nested_attributes_for :players
   accepts_nested_attributes_for :players_teams
 
+
+
+
+  
   def total_score
     total=[]
     self.rounds.each do |round|

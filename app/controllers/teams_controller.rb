@@ -64,7 +64,9 @@ class TeamsController < ApplicationController
 
     def update
         team=Team.find_by(id: params[:id])
-        PlayersTeam.where(team_id: team.id).each do |pt|
+        PlayersTeam.team_records(team.id).each do |pt|
+
+        # PlayersTeam.where(team_id: team.id).each do |pt|
             pt.delete
         end
         team.update(team_params(params[:team]))
