@@ -22,11 +22,12 @@ class TournamentsController < ApplicationController
 
     def edit
         @tournament=Tournament.find_by(id: params[:id])
-        if helpers.current_user.tournament_ids.include?(@tournament.id)
+        if user_authorized(@tournament.id)
+        # if helpers.current_user.tournament_ids.include?(@tournament.id)
             @players=helpers.current_user.players
-            @teams=@tournament.teams
-            @n=0
-            @g=0
+            # @teams=@tournament.teams
+            # @n=0
+            # @g=0
         else
             redirect_to root_path, alert: "You can't do that!"
         end
@@ -34,18 +35,19 @@ class TournamentsController < ApplicationController
 
     def update
         # make it where it renders what was entered to cause the error
-        @n=0
-        @g=0
+        # @n=0
+        # @g=0
         @players=helpers.current_user.players
         @tournament=Tournament.find_by(id: params[:id])
         if Tournament.new(tournament_params).valid?
             @tournament.teams.each do |t|
-                t.rounds.each do |round|
-                    round.holes.each do |hole|
-                        hole.delete
-                    end
-                    round.delete
-                end
+                delete_rounds_holes(t)
+                # t.rounds.each do |round|
+                #     round.holes.each do |hole|
+                #         hole.delete
+                #     end
+                #     round.delete
+                # end
                 PlayersTeam.where(team_id: t.id).each do |pt|
                     pt.delete
                 end
@@ -60,7 +62,8 @@ class TournamentsController < ApplicationController
     end
 
     def show
-        if helpers.current_user.tournament_ids.include?(params[:id].to_i)
+        if user_authorized(params[:id].to_i)
+        # if helpers.current_user.tournament_ids.include?(params[:id].to_i)
             @tournament=Tournament.find_by(id: params[:id])
             @players=@tournament.players
             @n=0
@@ -71,13 +74,15 @@ class TournamentsController < ApplicationController
 
     def destroy
         tournament=Tournament.find_by(id: params[:id])
-        if helpers.current_user.tournament_ids.include?(tournament.id)
-            tournament.teams.each do |t|
-                t.players_teams.each do |pt|
-                    pt.delete
-                end
-                t.delete
-            end
+        if user_authorized(tournament.id)
+        # if helpers.current_user.tournament_ids.include?(tournament.id)
+            delete_teams(tournament)
+            # tournament.teams.each do |t|
+            #     t.players_teams.each do |pt|
+            #         pt.delete
+            #     end
+            #     t.delete
+            # end
             tournament.delete
             redirect_to tournaments_path
         else
@@ -87,7 +92,8 @@ class TournamentsController < ApplicationController
 
     def posting
         @tournament=Tournament.find_by(id: params[:touranment_id])
-        if helpers.current_user.tournament_ids.include?(@tournament.id)
+        if user_authorized(@tournament.id)
+        # if helpers.current_user.tournament_ids.include?(@tournament.id)
             @players=@tournament.players
             @n=0
             @h=0
@@ -102,11 +108,12 @@ class TournamentsController < ApplicationController
         @t=0
         @h=0
         @r=0
-        hsh={}
-        @tournament.teams.each do |team|
-            hsh[team] = team.final_score
-        end
-        @teams=hsh.sort_by {|team, final_score| final_score}
+        # hsh={}
+        # @tournament.teams.each do |team|
+        #     hsh[team] = team.final_score
+        # end
+        # @teams=hsh.sort_by {|team, final_score| final_score}
+        @teams=teams_sorted_by_score(@tournament)
     end
 
     private
@@ -120,5 +127,36 @@ class TournamentsController < ApplicationController
     def require_login
         return head(:forbidden) unless session.include? :user_id
     end
+
+    def user_authorized(tournament_id)
+        helpers.current_user.tournament_ids.include?(tournament_id)
+    end
+
+    def delete_rounds_holes(team)
+        team.rounds.each do |round|
+            round.holes.each do |hole|
+                hole.delete
+            end
+            round.delete
+        end
+    end
+
+    def delete_teams(tournament)
+        tournament.teams.each do |t|
+            t.players_teams.each do |pt|
+                pt.delete
+            end
+            t.delete
+        end
+    end
+
+    def teams_sorted_by_score(tournament)
+        hsh={}
+        tournament.teams.each do |team|
+            hsh[team] = team.final_score
+        end
+        hsh.sort_by {|team, final_score| final_score}
+    end
+
 end
 
