@@ -8,7 +8,6 @@ class HolesController < ApplicationController
     end
 
     def create
-        # team=Team.find_by(id: params[:round][:team_id].to_i)
         team=Team.find_by(id: params[:team_id].to_i)
         params[:hole].each do |hole|
             if hole[:score].blank?
@@ -19,10 +18,6 @@ class HolesController < ApplicationController
         if helpers.current_user.tournament_ids.include?(team.tournament_id)
             round=Round.create(round_params)
             if !round.blank?
-                # params[:hole].each do |hole|
-                # @hole=Hole.create(hole_params(hole))
-                # round.holes << @hole
-                # end
                 create_holes_from_round(round)
             end
         end
@@ -35,7 +30,6 @@ class HolesController < ApplicationController
     end
 
     def round_params
-    #    params.require(:round).permit(:team_id)
        params.permit(:team_id)
     end
 
@@ -49,7 +43,5 @@ class HolesController < ApplicationController
             round.holes << @hole
         end
     end
-
-
 
 end

@@ -7,7 +7,6 @@ class PlayersTeamsController < ApplicationController
             @teams=@tournament.teams
             @n=0
             @team=Team.new
-            # @all=[]
             @players=helpers.current_user.players
         else
             redirect_to root_path, alert: "You can't do that!"
@@ -19,10 +18,8 @@ class PlayersTeamsController < ApplicationController
         pt.update(players_team_params)
         tournament=pt.team.tournament.id
         redirect_to "/tournaments/#{tournament}/players_teams/checkin"
-        # redirect_to "/players_teams/checkin/#{tournament}"
     end
-
-    
+ 
     private
     def players_team_params
         params.require(:players_team).permit(:paid, :mulligan)

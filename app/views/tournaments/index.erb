@@ -8,14 +8,11 @@
 
 <body>
 <%= render 'layouts/navbar' %>
-    <!-- Page Content -->
   <div class="container">
-    <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">All Tournaments!</h1>
       <p class="lead">Below is a list of all tournaments. To edit or add teams to the tournament you must go to the detail section.</p>
     </header>
-    <!-- Page Features -->
     <div class="row text-center">
       <% @tournaments.each do |t| %>
       <div class="col-lg-3 col-md-6 mb-4">
@@ -41,15 +38,11 @@
 <br>
 <br>
   </div>
-  <!-- /.container -->
-  <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Tournament Wizard 2020</p>
     </div>
-    <!-- /.container -->
   </footer>
-  <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
@@ -84,9 +77,7 @@
       </div>
     </div>
   </nav>
-    <!-- Page Content -->
   <div class="container">
-    <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
       <h1 class="display-3">FORE! It looks like you do not have any tournaments yet!</h1>
         <%= link_to "Add Golfers to Clubhouse", players_number_path, class: "btn btn-primary" %>

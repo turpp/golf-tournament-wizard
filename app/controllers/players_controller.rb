@@ -25,22 +25,14 @@ class PlayersController < ApplicationController
     def create
         @n=params[:number].to_i
         if create_players(params[:player])
-        # params[:player].each do |player|
-        #     @player=Player.create(player_params(player))
-        #     if !@player.valid?
-        #         return render :new
-        #     end
-        # end
         else
         redirect_to players_path
         end
     end
     
     def show
-        # if helpers.current_user.player_ids.include?(params[:id].to_i)
         if authorized(params[:id])
 
-            # @player=Player.find_by(id: params[:id])
             @player=find_player
         else
             redirect_to root_path, alert: "You can't do that!"
@@ -48,9 +40,7 @@ class PlayersController < ApplicationController
     end
 
     def edit
-        # if helpers.current_user.player_ids.include?(params[:id].to_i)
         if authorized(params[:id])
-            # @player=Player.find_by(id: params[:id])
             @player=find_player
             @player_edit=Player.new
         else
@@ -59,7 +49,6 @@ class PlayersController < ApplicationController
     end
 
     def update
-        # @player=Player.find_by(id: params[:id])
         @player=find_player
         if @player.update(player_params(params[:player]))
             redirect_to player_path(@player)
@@ -69,7 +58,6 @@ class PlayersController < ApplicationController
     end
 
     def destroy
-        # Player.find(params[:id]).destroy
         find_player.destroy
         redirect_to players_path
     end
