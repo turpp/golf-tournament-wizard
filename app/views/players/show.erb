@@ -12,6 +12,7 @@
       <% end %>
     </ul>
     <%= link_to "Edit Golfer", edit_player_path(@player), class: "btn btn-primary" %>
+    <%= link_to "All Golfers", players_path, class: "btn btn-primary" %>
     <%= button_to "Delete Golfer", player_path(@player), method: :delete, class: "btn btn-danger" %> 
   </header>
 </div>

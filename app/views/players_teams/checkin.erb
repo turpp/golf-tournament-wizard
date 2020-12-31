@@ -10,7 +10,8 @@
     <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
   </header>
 
-  <h2>Teams</h3>
+  <h2>Teams</h2>
+ 
   <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -30,12 +31,13 @@
       <td><%= f.label "#{pt.player.name}" %></td>
       <td><%= f.check_box :paid %></td>
       <td><%= f.check_box :mulligan %></td>
-      <td><%= f.submit "Check in" %></td>
+      <td><%= submit_tag "Check in" %></td>
+      <% end %>
+      </tr>
       <% end %>
       <% end %>
-      <% end %>
-    </tr>
   </table>
+
   <%= link_to "Go to Score Posting", "/tournaments/#{@tournament.id}/posting", class: "w-100 btn btn-primary" %>
 <br>
 <br>
@@ -57,9 +59,11 @@
       <% end %>
       <br>
     </div>
+  
   <div class='card-footer'>
   <h6>If golfers are not in drop down for team add them to clubhouse</h6>
   <%= link_to "Add Golfers to Clubhouse", players_number_path %>
+  </div>
   </div>
 </div>
 
