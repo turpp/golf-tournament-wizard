@@ -30,7 +30,7 @@
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-    <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
+    <p class="lead">Date: <%= @tournament.pretty_date %></p>
     <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
     <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
     <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>

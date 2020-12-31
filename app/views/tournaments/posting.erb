@@ -30,7 +30,7 @@
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-    <p class="lead">Date: <%= @tournament.date.strftime("%A, %b %d") %></p>
+    <p class="lead">Date: <%= @tournament.pretty_date %></p>
     <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
     <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
     <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
@@ -40,15 +40,16 @@
   <% @tournament.teams.each do |team|%>
   <br>
   <% @r=0%>
-  <h3><u><%= "Team #{@n+=1}" %></u>
+  <h5><u><%= "Team #{@n+=1}" %></u></h5>
 
+#-------make a partial with results page-----
   <% team.players.each do |player| %>
-  <p class='lead'><%= player.name %></p>
+  <p class='h4'><%= player.name %></p>
   <% end %>
-  </h3>
-
+  
   <% team.rounds.each do |round| %>
   <% @h=0%>
+  <br>
   <table class="table table-bordered">
     <u><%= "Round #{@r+=1}" %></u><br>
     <tr>
@@ -65,6 +66,8 @@
       <% end %>
     </tr>
   </table>
+  #-----------------
+
   <%= link_to "Enter Team's Score", "/teams/#{team.id}/holes/round_entry", class: "btn btn-primary"%>
   <br>
   <p class=h3><%= "#{'Tournament Total:' if team.total_score !=0} #{ team.total_score if team.total_score != 0}" %></p>

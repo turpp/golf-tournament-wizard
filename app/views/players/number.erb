@@ -30,19 +30,6 @@
   }
 </style>
 
-<%= alert %>
-<div class="container">
-  <header class="jumbotron my-4">
-    <h1 class="display-3 text-center">How many players would you like to add?</h1>
-    <main class="form-signin">
-      <%= form_tag '/players/number', method: :post do %>
-      <div class="form-group ">
 
-      <%= number_field_tag :number, nil, class: "form-control", placeholder:"number" %>
-      <%= submit_tag "Submit" %>
-      </div>
-    </main>
-      <% end %>
-  </header>
-</div>
+<%= render partial: "players/temp", locals: {route: '/players/number'} %>
 
