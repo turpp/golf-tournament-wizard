@@ -2,7 +2,12 @@ class PlayersController < ApplicationController
     before_action :require_login
     
     def index        
+        if params[:touranment_id]
+            @tournament=Tournament.find_by(id: params[:tournament_id])
+            @players=@tournament.players
+        else
         @players=helpers.current_user.players 
+        end
     end
 
     def number

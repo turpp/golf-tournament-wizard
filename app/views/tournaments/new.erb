@@ -60,19 +60,7 @@
   }
 </style>
 
-<% if @tournament.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@tournament.errors.count, "error") %>
-      prohibited this tournament from being saved:
-    </h2>
-    <ul>
-    <% @tournament.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %> 
+<%= render partial: "layouts/error", locals: {instance: @tournament} %>
 
 <main class="form-signin">
   <%= form_for @tournament do |f| %>

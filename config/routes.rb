@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get '/players_teams/checkin', to: "players_teams#checkin"
     post '/teams/number', to: 'teams#times'
     resources :teams, only: :create
+    resources :players, only: :index
   end
   
   resources :users
