@@ -16,7 +16,7 @@ To use the application:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/turpp/sinatra-project-ecookbook. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/turpp/golf-tournament-wizard. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 
