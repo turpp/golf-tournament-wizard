@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Date Sidekick 👋</h1>
+<h1 align="center">Welcome to Golf Tournament Wizard 👋</h1>
 <p>
 
 
