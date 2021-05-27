@@ -3,19 +3,21 @@ class SessionsController < ApplicationController
     end
 
     def new
+        byebug
     end
 
 
     def create
-        if params[:username]
-            if params[:username].blank? || params[:password].blank?    
-                redirect_to '/login', alert: "Must fill out Username and Password Fields"
-            else
-                set_user
-            end
-        else
-            facebook_login
-        end
+        byebug
+        # if params[:username]
+        #     if params[:username].blank? || params[:password].blank?    
+        #         redirect_to '/login', alert: "Must fill out Username and Password Fields"
+        #     else
+        #         set_user
+        #     end
+        # else
+        #     facebook_login
+        # end
     end
     
     def destroy
