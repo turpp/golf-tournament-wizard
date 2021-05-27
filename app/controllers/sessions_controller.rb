@@ -27,9 +27,9 @@ class SessionsController < ApplicationController
 
     
     private
-    def auth
-        request.env['omniauth.auth']
-    end
+    # def auth
+    #     request.env['omniauth.auth']
+    # end
 
     def set_user
         if @user = User.find_by(username: params[:username])
