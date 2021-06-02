@@ -4,15 +4,16 @@
       color: #fff;
   }
 </style>
-
+<body class='clubhouse'>
 <%= render 'layouts/navbar' %>
-  <div class="container">
-    <header class="jumbotron my-3">
-      <h1 class="display-3">Welcome <%= @user.name %>!</h1>
+  <div class="container mx-auto">
+    <header class="jumbotron w-100 mx-auto">
+      <h1 class="display-4">Welcome <%= @user.name %>!</h1>
       <p class="lead">Congrats on letting Tournament Wizard bring back the magic to your tournaments. This is the home for your clubhouse. From this page you will be able to do many things to help make tournament day a breeze!</p>
     </header>
-    <div class="d-flex justify-content-center">
-      <div class="col-lg-3 col-md-6 mb-3">
+    <div class ='container'>
+    <div class="row justify-content-center mx-auto">
+      <div class="col-lg-4 col-md-6 mb-3">
         <div class="card h-100">
           <img class="card-img-top" src="https://img.freepik.com/free-vector/golf-tournament-club-logo-labe_24877-1969.jpg?size=338&ext=jpg" alt="Tournament">
           <div class="card-body">
@@ -30,7 +31,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 mb-3">
+      <div class="col-lg-4 col-md-6 mb-3">
         <div class="card h-100">
           <img class="card-img-top" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/golfer-1580197-1335346.png" alt="Golfer">
           <div class="card-body">
@@ -43,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 mb-3">
+      <div class="col-lg-4 col-md-6 mb-3">
         <div class="card h-100">
           <img class="card-img-top" src="https://static.thenounproject.com/png/5075-200.png" alt="">
           <div class="card-body">
@@ -57,7 +58,12 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
+  </div>
+  <br>
+  <br>
+  
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Tournament Wizard 2020</p>
