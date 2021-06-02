@@ -16,6 +16,7 @@
 
   html,body {
   height: 100%;
+  width: 100%%
   }
 
   body {
@@ -28,7 +29,7 @@
 
   .form-signin {
     width: 100%;
-    max-width: 330px;
+    max-width: 500px;
     padding: 15px;
     margin: auto;
   }
@@ -55,15 +56,19 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
+  .form-signin input{
+    margin: 10px 0px
+  }
 </style>
 
-<%= render partial: "layouts/error", locals: {instance: @user} %>
 
 
-<body class="text-center">
+<body class="text-center ">
   <main class="form-signin">
-    <img class="mb-4" src="https://img.icons8.com/ios/452/golf.png" alt="Golfer" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+  <%= render partial: "layouts/error", locals: {instance: @user} %>
+    <img class="mb-4 w-50" src="https://img.icons8.com/ios/452/golf.png" alt="Golfer">
+    <h1 class="h1 mb-3 fw-normal">Welcome!</h1>
     <%= form_for @user do |f| %>
     <%= f.text_field :name, class: "form-control", placeholder:"Golf Course Name" %>
     <%= f.number_field :phone_number, class: "form-control", placeholder:"Phone Number" %>
@@ -72,9 +77,10 @@
     <%= f.password_field :password, class: "form-control", placeholder:"Password" %>
     <%= f.password_field :password_confirmation, class: "form-control", placeholder:"Confirm Password" %>
     <%= f.submit "Submit", class: "w-100 btn btn-lg btn-primary" %>
-    <% end %> 
     or
     <%= link_to('Sign up with Facebook!', '/auth/facebook', class: "w-100 btn btn-lg btn-primary") %> 
+    <% end %> 
+    
   </main>
 </body>
 
