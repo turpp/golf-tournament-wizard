@@ -26,8 +26,8 @@
   }
 
   .form-signin {
-    width: 100%;
-    max-width: 330px;
+    width: 90%;
+    max-width: 500px;
     padding: 15px;
     margin: auto;
   }
@@ -58,11 +58,16 @@
   .field_with_errors {
     outline: 4px dotted red;
   }
+
+  .create-tournament-btn{
+    float: right;
+  }
 </style>
 
-<%= render partial: "layouts/error", locals: {instance: @tournament} %>
 
 <main class="form-signin">
+<%= render partial: "layouts/error", locals: {instance: @tournament} %>
+
   <%= form_for @tournament do |f| %>
   <legend><center><h2><b>Create Tournament</b></h2></center></legend><br>
   <div class="form-group ">
@@ -102,7 +107,7 @@
   </div>
 
   <%= f.hidden_field :user_id, value: session[:user_id] %>
-  <%= f.submit %>
+  <%= f.submit class: 'btn btn-primary create-tournament-btn'%>
   <% end %>
 </main>
 
