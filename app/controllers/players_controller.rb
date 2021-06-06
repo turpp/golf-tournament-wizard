@@ -18,7 +18,7 @@ class PlayersController < ApplicationController
         if @n > 0
             redirect_to "/players/new/#{@n}"
         else
-            redirect_to "/players/number", alert: "Number field can't be blank and must be greater than 1"
+            redirect_to "/players/number", alert: "Number field can't be blank and must be 1 or more."
         end
     end
 
