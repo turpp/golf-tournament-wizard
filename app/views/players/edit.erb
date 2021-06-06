@@ -1,4 +1,25 @@
+<style>
+.golfer-index-content {
+    position: relative;
+  min-height: 100vh;
+  }
 
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
+
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
+
+.footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+</style>
 <% if @player.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -12,26 +33,47 @@
   </div>
 <% end %> 
 
-<div class="container">
-  <body>
+<div class='golfer-index-content'>
+<%= render 'layouts/navbar' %>
+
+<div class="container content-wrapper mt-2">
     <div class="card-deck">
-      <div class="card" style="width: 50rem;">
+      <div class="card">
         <div class="card-body">
-        <h1 class="display-2">Edit Golfer</h1>
+        <h1 class="display-2 text-center">Edit Golfer</h1>
           <div class="card text-white bg-dark">
             <div class="card-body">
-              <%= form_for @player do |f| %>
-              <%= f.label :name %> 
-              <%= f.text_field :name %> 
-              <%= f.label :handicap %> 
-              <%= f.text_field :handicap  %>
-              <%= f.hidden_field :user_id, value: session[:user_id] %>
-              <%= f.submit %>
+             
+                <%= form_for @player do |f| %>
+                 <div class='row justify-content-center text-center'>
+                <div class='col'>
+                <%= f.label :name %> 
+                <%= f.text_field :name %> 
+                </div>
+                <div class='col'>
+                <%= f.label :handicap %> 
+                <%= f.text_field :handicap  %>
+                </div>
+                <div class='col'>
+                <%= f.hidden_field :user_id, value: session[:user_id] %>
+                <%= f.submit %>
+                </div>
+              </div>
             </div>
           </div>
               <% end %>
         </div>
       </div>
     </div>
-  </body>
+</div>
+<br>
+<br>
+
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+  </footer>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </div>
