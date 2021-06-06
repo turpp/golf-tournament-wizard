@@ -3,10 +3,31 @@
       background-color: #226F54;
       color: #fff;
   }
+  .clubhouse {
+    position: relative;
+  min-height: 100vh;
+  }
+
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
+
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
+
+ .footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+
 </style>
-<body class='clubhouse'>
+<div class='clubhouse'>
 <%= render 'layouts/navbar' %>
-  <div class="container mx-auto">
+  <div class="container mx-auto content-wrap">
     <header class="jumbotron w-100 mx-auto">
       <h1 class="display-4">Welcome <%= @user.name %>!</h1>
       <p class="lead">Congrats on letting Tournament Wizard bring back the magic to your tournaments. This is the home for your clubhouse. From this page you will be able to do many things to help make tournament day a breeze!</p>
@@ -60,16 +81,15 @@
     </div>
     </div>
   </div>
-  </div>
   <br>
   <br>
   
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Tournament Wizard 2020</p>
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p ">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
     </div>
   </footer>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-</body>
+</div>
 
