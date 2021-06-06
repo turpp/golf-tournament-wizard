@@ -24,6 +24,23 @@
    margin: auto !important;
    width: 100%;
  }
+
+@media(max-width: 500px){
+  .jumbotron h1{
+    font-size: 2.5rem;
+  }
+}
+@media(min-width: 500px){
+  .jumbotron h1{
+    font-size: 3rem;
+  }
+}
+
+@media(min-width: 770px){
+  .jumbtron h1{
+    font-size: 4rem;
+  }
+}
 </style>
 <% if !@tournaments.empty? %>
 
@@ -31,7 +48,7 @@
   <%= render 'layouts/navbar' %>
   <div class="container mb-3 content-wrap">
     <header class="jumbotron my-4">
-      <h1 class="display-5 text-center">All Tournaments!</h1>
+      <h1 class="display-3 text-center">All Tournaments!</h1>
       <p class="lead text-center">Below is a list of all tournaments. To edit or add teams to the tournament you must go to the detail section.</p>
     </header>
     <div class='container'>
