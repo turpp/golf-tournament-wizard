@@ -54,10 +54,14 @@
    width: 100%;
  }
 
+.how-many-btn{
+  float: right;
+}
+
 </style>
-<div class='erb-main-content'>
+<div class='erb-main-content text-center'>
 <%= render 'layouts/navbar' %>
-<%= alert %>
+<h4 class='mt-2'><u><%= alert %></u></h4>
 <div class="container content-wrap">
   <div class="jumbotron mt-4">
     <h1 class="display-3 text-center add-players-header">How many would you like to add?</h1>
@@ -65,7 +69,7 @@
       <%= form_tag route, method: :post do %>
       <div class="form-group ">
       <%= number_field_tag :number, nil, class: "form-control my-3", placeholder:"number" %>
-      <%= submit_tag "Submit" %>
+      <%= submit_tag "Submit", class: 'how-many-btn btn btn-primary' %>
       </div>
     </main>
       <% end %>
