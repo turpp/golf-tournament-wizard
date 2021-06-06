@@ -1,20 +1,59 @@
-<%= render 'layouts/navbar' %>
+<style>
+  .golfer-show-content {
+    position: relative;
+  min-height: 100vh;
+  }
 
-<div class="container">
-  <header class="jumbotron my-4">
-    <h1><%= @player.name %></h1>
-    <h4>Handicap:
-    <%= @player.handicap %></h4>
-    <h4>Tournaments Played In</h4>
-    <ul>
-      <% @player.tournaments.each do |t|%>
-      <li><%= t.name %></li>
-      <% end %>
-    </ul>
-    <%= link_to "Edit Golfer", edit_player_path(@player), class: "btn btn-primary" %>
-    <%= link_to "All Golfers", players_path, class: "btn btn-primary" %>
-    <%= button_to "Delete Golfer", player_path(@player), method: :delete, class: "btn btn-danger" %> 
-  </header>
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
+
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
+
+.footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+</style>
+
+<div class='golfer-show-content'>
+  <%= render 'layouts/navbar' %>
+  <div class="container">
+    <header class="jumbotron my-4">
+      <h1 class='text-center'><%= @player.name %></h1>
+      <h4>Handicap:
+      <%= @player.handicap %></h4>
+      <br>
+      <div class='row justify-content-center'>
+        <%= link_to "Edit Golfer", edit_player_path(@player), class: "btn btn-primary mx-2" %>
+        <%= link_to "All Golfers", players_path, class: "btn btn-primary mx-2" %>
+        <%= button_to "Delete Golfer", player_path(@player), method: :delete, class: "btn btn-danger mx-2" %> 
+      </div>
+    </header>
+    <div class='container content-wrap'>
+      <h4>Tournaments Played In</h4>
+      <ul>
+        <% @player.tournaments.each do |t|%>
+          <li><%= t.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <br>
+ 
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+  </footer>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </div>
 
 
