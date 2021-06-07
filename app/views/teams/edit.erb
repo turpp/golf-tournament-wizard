@@ -1,20 +1,91 @@
-<div class='container'>
-  <h1 class="display-2">Edit Team</h1>
-  <div class="card text-white bg-dark">
-    <div class="card-body">
-      <%= form_for @team do |f| %>
-      <%= f.label :divison %>
-      <%= f.text_field :divison %>
-      <%= f.hidden_field :tournament_id, value: @team.tournament_id %>
-      <br>
-      <%= f.fields_for :players_teams do |pt| %>
-      <%= pt.label "Team Member:" %>
-      <%= pt.collection_select :player_id, @players, :id, :name %>
-      <% end %>
-      <br>
-      <%= f.submit %>
-      <% end %>
-      <%= button_to "Delete Team", team_path(@team), method: :delete %>
+<style>
+.erb-main-content {
+    position: relative;
+  min-height: 100vh;
+  }
+
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
+
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
+
+.footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+
+.btn-col{
+  margin: auto !important;
+}
+
+.btn{
+  margin: 10px;
+  float: right;
+}
+
+label{
+  font-size: 1.5rem;
+  margin-bottom: 0px;
+}
+
+.col{
+  max-width: 350px;
+}
+
+.card{
+  max-width: 700px;
+  margin: auto;
+}
+
+
+
+
+
+</style>
+
+<div class='erb-main-content'>
+  <%= render 'layouts/navbar' %>
+  <div class='container content-wrapper mt-2'>
+    <h1 class="display-2 text-center">Edit Team</h1>
+    <div class="card bg-light">
+      <div class="card-body">
+        <%= form_for @team do |f| %>
+        <div class='row '>
+          <div class='col'>
+            <%= f.label :divison %>
+            <%= f.text_field :divison, placeholder: 'optional' %>
+            <%= f.hidden_field :tournament_id, value: @team.tournament_id %> 
+          <br>
+            <%= f.fields_for :players_teams do |pt| %>
+            <%= pt.label "Team Member" %>
+            <%= pt.collection_select :player_id, @players, :id, :name%>
+            <% end %>
+          </div>
+          <div class='col btn-col'>
+            <br>
+            <%= f.submit class: "btn btn-primary" %>
+            <% end %>
+            <%= button_to "Delete Team", team_path(@team), method: :delete, class: "delete-btn-col btn btn-danger" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+  <br>
+  <br>
+
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+  </footer>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </div>
