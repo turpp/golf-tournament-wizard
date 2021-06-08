@@ -24,9 +24,9 @@
     background-color: #f5f5f5;
   }
 
-  .form-signin {
+  /* .form-signin {
     width: 100%;
-    max-width: 330px;
+    max-width: 500px;
     padding: 15px;
     margin: auto;
   }
@@ -52,17 +52,19 @@
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-  }
+  } */
+
+  
     </style>
 
 <%= alert %>
 <br>
-<body class="text-center">
-  <main class="form-signin">
-    <h1 class="h3 mb-3 fw-normal"><%= @team.tournament.name %></h1>
+<div class="container text-center mt-5">
+  <div class="form">
+    <h1 class="h1 mb-3 fw-bold"><%= @team.tournament.name %></h1>
 
     <% @team.players.each do |p| %>
-    <%= "Golfer #{@n+=1}: #{p.name}" %>
+    <p class='lead fs-4'><%= "Golfer #{@n+=1}: #{p.name}" %><p>
     <% end %>
 
     <%= form_tag "/teams/#{@team.id}/holes", method: :post do %>
@@ -72,7 +74,7 @@
     <br>
     <% end %>
     
-    <%= submit_tag "submit" %>
+    <%= submit_tag "submit", class: 'btn btn-primary shadow mt-2' %>
     <% end %>
-  </main>
-</body>
+  </div>
+</div>
