@@ -21,7 +21,7 @@
  }
 
 .btn-col{
-  margin: auto !important;
+  float: right;
 }
 
 .btn{
@@ -48,32 +48,40 @@ label{
     font-size: 3rem !important;
   }
 }
+
+@media only screen and (min-width: 510px) and (max-width: 546px) {
+	.golfer-col{
+    width: 211px;
+  }
+}
+
+
+form .card{
+  margin-bottom: 2rem
+}
 </style>
 
 <div class='erb-main-content'>
- <%= render 'layouts/navbar' %>
+  <%= render 'layouts/navbar' %>
   <%= alert %>
   <div class="container content-wrapper mt-2">
-    
-      <div class="card">
-        <div class="card-body">
-          <h1 class="display-2 text-center">Add Teams</h1>
-          <%= form_tag "/tournaments/#{params[:tournament_id]}/teams", method: :post do %>
-          <% @n.times do %>
-          <%= render 'group_team_form' %>
-          <% end %>
+    <div class="card main-card">
+      <div class="card-body">
+        <h1 class="display-2 text-center">Add Teams</h1>
+        <%= form_tag "/tournaments/#{params[:tournament_id]}/teams", method: :post do %>
+        <% @n.times do %>
+        <%= render 'group_team_form' %>
+        <% end %>
+        <div class='row d-flex justify-content-end'>
           <div class='col btn-col'>
-          <br>
             <%= submit_tag "Create Teams" , class: "btn btn-primary"%>
-            <% end %>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-  </div>
- 
-  </div>
+  
   <br>
   <br>
   <footer class="py-4 bg-dark footer">

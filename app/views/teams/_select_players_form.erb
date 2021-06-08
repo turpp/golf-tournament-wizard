@@ -1,6 +1,7 @@
 <%@players_on_team.times do %>
+<div class="col col-sm-5 golfer-col">
 <%= label_tag :golfer %>
 <%= collection_select "team[][player_ids][][id]", :id, @players, :id, :name, prompt: true %>
-
+</div>
 
 <% end %>
