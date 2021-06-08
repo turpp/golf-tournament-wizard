@@ -11,12 +11,26 @@
       <% round.holes.each do |hole| %>
       <th><%= "Hole #{@h+=1}" %></th>
       <% end %>
+      <th>Front Nine</th>
+      <th>Back Nine</th>
       <th>Round Total</th>
     </tr>
     <tr>
+      <%@fnine=0%>
+      <%@bnine=0%>
+      <%@counter=1%>
       <% round.holes.each do |hole| %>
       <td><%= "#{hole.score}" %></td>
+      <%if @counter < 10%>
+      <%@counter +=1 %>
+      <%@fnine += hole.score%>
+      <%else%>
+      <%@counter +=1 %>
+      <%@bnine += hole.score%>
+      <%end%>
       <% end %>
+      <td><%= "#{@fnine}"%></td>
+      <td><%= "#{@bnine}"%></td>
       <td><%= "#{round.round_total}" %></td>
        </tr>
   </table>
