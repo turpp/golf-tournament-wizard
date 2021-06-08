@@ -1,69 +1,119 @@
-<%= render 'layouts/navbar' %>
+<style>
+  .erb-main-content {
+    position: relative;
+  min-height: 100vh;
+  }
 
-<div class="container">
-  <!-- Jumbotron Header -->
-  <header class="jumbotron my-4">
-    <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-    <p class="lead">Date: <%= @tournament.pretty_date %></p>
-    <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
-    <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
-    <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
-  </header>
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
 
-  <h2>Teams</h2>
- 
-  <table class="table">
-    <thead class="thead-dark">
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
+
+.footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+
+ @media(max-width: 550px ){
+   .display-3{
+     font-size: 3rem !important;
+   }
+ }
+
+ @media(max-width: 380px ){
+   .display-3{
+     font-size: 2rem !important;
+   }
+ }
+
+ [type="checkbox"]::before{
+   left: .4em !important;
+ }
+ [type="checkbox"]::after{
+   left: .4em !important;
+ }
+
+</style>
+<div class='erb-main-content'>
+  <%= render 'layouts/navbar' %>
+  <div class="container content-wrapper mb-5">
+    <header class="jumbotron my-4">
+      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+      <p class="lead">Date: <%= @tournament.pretty_date %></p>
+      <p class="lead">Entry Fee: $<%= @tournament.entry_fee %></p>
+      <p class="lead">Number of Rounds: <%= @tournament.number_of_rounds %></p>
+      <p class="lead"><%= @tournament.holes_per_round %> hole tournament</p>
+    </header>
+    <h2>Teams</h2>
+    <table class="table ">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Golfer</th>
+          <th scope="col">Paid</th>
+          <th scope="col">Mulligan</th>
+          <th scope="col">Save</th>
+        </tr>
+      </thead>
+      <% @teams.each do |team| %>
+      <% @n+=1 %>
+      <% team.players_teams.each do |pt| %>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Golfer</th>
-        <th scope="col">Paid</th>
-        <th scope="col">Mulligan</th>
-        <th scope="col">Save</th>
-      </tr>
-    </thead>
-<% @teams.each do |team| %>
-<% @n+=1 %>
-<% team.players_teams.each do |pt| %>
-    <tr>
-      <th scope="row"><%= @n %></th>
-      <%= form_for pt do |f| %>
-      <td><%= f.label "#{pt.player.name}" %></td>
-      <td><%= f.check_box :paid %></td>
-      <td><%= f.check_box :mulligan %></td>
-      <td><%= submit_tag "Check in" %></td>
-      <% end %>
+        <th scope="row"><%= @n %></th>
+        <%= form_for pt do |f| %>
+        <td><%= f.label "#{pt.player.name}" %></td>
+        <td><%= f.check_box :paid %></td>
+        <td><%= f.check_box :mulligan %></td>
+        <td><%= submit_tag "Check in" , class: 'shadow' %></td>
+        <% end %>
       </tr>
       <% end %>
       <% end %>
-  </table>
-
-  <%= link_to "Go to Score Posting", "/tournaments/#{@tournament.id}/posting", class: "w-100 btn btn-primary" %>
-<br>
-<br>
-<br>
-  <div class="card">
-    <div class="card-body">
-      <h3 class="card-title">Add Team</h3>
-      <%= form_for @team do |f| %>
-      <%= f.label :divison %>
-      <%= f.text_field :divison %>
-      <%@tournament.players_on_team.times do %>
-      Golfer:
-      <%= collection_select "team[player_ids][][id]", :id, @players, :id, :name, prompt: true %>
-      <br>
-      <% end %>
-      <%= hidden_field_tag "team[tournament_id]", @tournament.id %>
-      <%= hidden_field_tag "checkin", true %>
-      <%= f.submit  %>
-      <% end %>
-      <br>
+    </table>
+    <%= link_to "Go to Score Posting", "/tournaments/#{@tournament.id}/posting", class: "w-100 btn btn-primary" %>
+    <br>
+    <br>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Add Team</h3>
+        <%= form_for @team do |f| %>
+        <%= f.label :divison %>
+        <%= f.text_field :divison %>
+        <%@tournament.players_on_team.times do %>
+        Golfer:
+        <%= collection_select "team[player_ids][][id]", :id, @players, :id, :name, prompt: true %>
+        <br>
+        <% end %>
+        <%= hidden_field_tag "team[tournament_id]", @tournament.id %>
+        <%= hidden_field_tag "checkin", true %>
+        <%= f.submit  %>
+        <% end %>
+        <br>
+      </div>
+      <div class='card-footer'>
+        <h6>If golfers are not in drop down for team add them to clubhouse</h6>
+        <%= link_to "Add Golfers to Clubhouse", players_number_path %>
+      </div>
     </div>
-  
-  <div class='card-footer'>
-  <h6>If golfers are not in drop down for team add them to clubhouse</h6>
-  <%= link_to "Add Golfers to Clubhouse", players_number_path %>
   </div>
-  </div>
+
+<br>
+<br>
+
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+  </footer>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </div>
 
+  
