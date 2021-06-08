@@ -1,11 +1,12 @@
   <% team.players.each do |player| %>
-  <p class='h4'><%= player.name %></p>
+  <p class='h3'><strong><%= player.name %></strong></p>
   <% end %>
   <% team.rounds.each do |round| %>
   <% @h=0 %>
-  <br>
-  <table class="table table-bordered">
     <u><%= "Round #{@r+=1}" %></u><br>
+      <div class='table-responsive'>
+  <table class="table table-bordered">
+
     <tr>
       <% round.holes.each do |hole| %>
       <th><%= "Hole #{@h+=1}" %></th>
@@ -17,6 +18,8 @@
       <td><%= "#{hole.score}" %></td>
       <% end %>
       <td><%= "#{round.round_total}" %></td>
-  <% end %>
-  </tr>
+       </tr>
   </table>
+  </div>
+      <% end %>
+   
