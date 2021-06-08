@@ -23,12 +23,18 @@
 .create-golfer-btn{
   float: right;
 }
+
+@media(max-width: 490px){
+  .display-2{
+    font-size: 3rem !important;
+  }
+}
 </style>
 <div class='erb-main-content'>
 <%= render 'layouts/navbar' %>
 <%= render partial: "layouts/error", locals: {instance: @player} %>
 
-<div class="container content-wrapper mt-2">
+<div class="container content-wrapper mt-2 mb-5">
     <div class="card-deck">
       <div class="card">
         <div class="card-body">
