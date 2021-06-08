@@ -1,17 +1,61 @@
-<%= render 'layouts/navbar' %>
+<style>
+.erb-main-content {
+    position: relative;
+  min-height: 100vh;
+  }
 
-<div class="container">
-  <header class="jumbotron my-4">
-    <h1 class="display-3 text-center"><%= @tournament.name %></h1>
-  </header>
+  .content-wrap {
+    padding-bottom: 1.5rem;
+  }
 
-  <h3>Scores:</h3>
-  <% @teams.each do |team, final_score| %>
-  <h3><u> <%= "Final Score: #{team.total_score}" %></u></h3>
+  .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* height: 3rem; */
+}
 
-<%= render partial: "scorecard", locals: {team: team} %>
-  
-  <% @r=0%>
+.footer-p{
+   margin: auto !important;
+   width: 100%;
+ }
+
+ @media(max-width: 776px ){
+   .display-3{
+     font-size: 4rem;
+   }
+ }
+
+ @media(max-width: 472px ){
+   .display-3{
+     font-size: 3rem;
+   }
+ }
+</style>
+
+<div class='erb-main-content'>
+  <%= render 'layouts/navbar' %>
+  <div class="container content-wrap">
+    <header class="jumbotron my-4">
+      <h1 class="display-3 text-center"><%= @tournament.name %></h1>
+    </header>
+    <h2 class='text-center'>Scores</h2>
+    <hr>
+    <% @teams.each do |team, final_score| %>
+    <%= render partial: "scorecard", locals: {team: team} %>
+    <% @r=0%>
+        <h3><u> <%= "Final Score: #{team.total_score}" %></u></h3>
+
+    <br>
+    <% end %>
+  </div>
   <br>
-  <% end %>
+  <br>
+  <footer class="py-4 bg-dark footer">
+    <div class="container footer-p">
+      <p class="m-0 text-center text-white footer-container">Copyright &copy; Tournament Wizard 2020</p>
+    </div>
+  </footer>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </div>
